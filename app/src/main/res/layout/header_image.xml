@@ -1,0 +1,16 @@
+<FrameLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DP100"
+        android:layout_gravity="center"
+        android:padding="@dimen/DP20"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/black_logo"
+        tools:ignore="ContentDescription" />
+
+</FrameLayout>

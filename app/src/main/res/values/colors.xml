@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#168add</color>
+
+    <color name="grey_light1">#E4E4E4</color>
+    <color name="grey_light">#e6e4e3</color>
+    <color name="splash_color">#168add</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="skyblue">#75C0DF</color>
+    <color name="grey_medium">#bcbaba</color>
+    <color name="grey_txt">#8e8e8e</color>
+    <color name="grey_dark">#5e5e5e</color>
+    <color name="green">#5fc825</color>
+    <color name="dark_green">#277202</color>
+    <color name="colorBtnGreen">#009688</color>
+    <color name="colorBtnRed">#BF360C</color>
+    <color name="light_black">#4f4d4e</color>
+    <color name="yellow">#fac917</color>
+    <color name="rl_back">#B4F8F8F8</color>
+    <color name="transparent">@android:color/transparent</color>
+    <color name="bla_trans">#C0000000</color>
+    <color name="blue">#0929E0</color>
+
+    <color name="fb">#3e60aa</color>
+    <color name="light_blue">#3884be</color>
+    <color name="trans_white">#BAFFFFFF</color>
+    <color name="trans_blue">#B0168ADD</color>
+
+
+    <array name="array_dot_active">
+        <item>@color/splash_color</item>
+        <item>@color/splash_color</item>
+        <item>@color/splash_color</item>
+
+    </array>
+
+    <array name="array_dot_inactive">
+        <item>@color/skyblue</item>
+        <item>@color/skyblue</item>
+        <item>@color/skyblue</item>
+
+    </array>
+</resources>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="@dimen/DP10"
+    app:cardElevation="@dimen/DP6"
+    app:cardBackgroundColor="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/splash_color"
+            android:padding="@dimen/DP10"
+            android:textSize="@dimen/SP20"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:text="@string/logout"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/DP8"
+            android:textSize="@dimen/SP18"
+            android:layout_marginTop="@dimen/SP20"
+            android:textColor="@color/black"
+            android:textStyle="normal"
+            android:text="@string/are_sure_logout"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/DP10"
+            android:padding="@dimen/DP5"
+            android:weightSum="1"
+            android:layout_marginBottom="@dimen/DP8"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_logout_cancel"
+                android:layout_width="match_parent"
+                android:layout_weight="0.50"
+                android:layout_marginBottom="@dimen/DP8"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginEnd="@dimen/DP4"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:background="@drawable/cornerboder_theme_green"
+                android:text="@string/no"
+                tools:ignore="ButtonStyle" />
+
+            <Button
+                android:id="@+id/btn_logout_ok"
+                android:layout_width="match_parent"
+                android:layout_weight="0.50"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/DP8"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/DP4"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@drawable/cornerboder_theme_red"
+                android:text="@string/yes"
+                tools:ignore="ButtonStyle" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

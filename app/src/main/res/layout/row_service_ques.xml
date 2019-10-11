@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="5sp"
+        android:hint="Title"
+        android:textColor="@color/light_black"
+        android:textSize="18sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@color/transparent"
+        android:orientation="vertical" />
+
+
+    <FrameLayout
+        android:id="@+id/flSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginBottom="20sp"
+        android:background="@drawable/blue_border"
+        android:padding="2sp"
+        android:visibility="gone">
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:gravity="center"
+            style="@style/SpinnerTheme"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="5dp"
+            android:scaleType="fitXY"
+            android:visibility="gone"
+            android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
+            android:background="@color/green"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/flSpinnerRadio"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginBottom="20sp"
+        android:background="@drawable/blue_border"
+        android:padding="2sp"
+        android:visibility="gone">
+
+        <Spinner
+            android:id="@+id/spinnerRadio"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
+            android:background="@color/green"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+    </RadioGroup>
+    <!--
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>-->
+
+
+    <FrameLayout
+        android:id="@+id/flSpinner2"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginBottom="20sp"
+        android:background="@drawable/blue_border"
+        android:padding="2sp"
+        android:visibility="gone">
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|center"
+            android:layout_marginRight="5dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_arrow_drop_down_black_24dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="5dp"
+            android:background="@color/green"
+            android:visibility="gone" />
+
+    </FrameLayout>
+
+    <com.quotesin.quotesin.utils.CustomEditText
+        android:id="@+id/et1"
+        android:layout_width="match_parent"
+        android:layout_height="40sp"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginBottom="20sp"
+        android:background="@drawable/border_layout"
+        android:fontFamily="sans-serif-medium"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="1"
+        android:padding="2sp"
+        android:visibility="gone" />
+
+    <com.quotesin.quotesin.utils.CustomEditText
+        android:id="@+id/et2"
+        android:layout_width="match_parent"
+        android:layout_height="80sp"
+        android:layout_gravity="left|top"
+        android:layout_marginLeft="30sp"
+        android:layout_marginTop="20sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginBottom="20sp"
+        android:background="@drawable/border_layout"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left|top"
+        android:imeOptions="actionNext"
+        android:inputType="text"
+        android:maxLines="8"
+        android:padding="2sp"
+        android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/edt"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+
+    <LinearLayout
+        android:id="@+id/RadioLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60sp"
+        android:orientation="vertical">
+
+    </LinearLayout>
+
+</LinearLayout>

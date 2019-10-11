@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="@drawable/backgrd_order_history"
+    android:layout_margin="20sp"
+    android:layout_height="match_parent">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textStyle="bold"
+    android:textSize="30sp"
+    android:text="Website"
+    android:textColor="#363636"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:layout_marginTop="10sp"
+        android:text="Lorem ipsum dolor sit amet,"
+        android:textColor="@color/grey_txt"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvstart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="10sp"
+            android:text="Start: "
+            android:layout_alignParentLeft="true"
+            android:textColor="@color/green"/>
+
+        <TextView
+            android:id="@+id/tvStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="10sp"
+            android:text="30/01/2019"
+            android:layout_marginRight="40sp"
+            android:layout_toRightOf="@+id/tvstart"
+            android:textColor="@color/green"/>
+
+        <TextView
+            android:layout_toRightOf="@+id/tvStartDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="10sp"
+            android:text="Start: "
+            android:textColor="@color/green"/>
+
+        <TextView
+            android:id="@+id/tvDeadDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_marginTop="10sp"
+            android:text="30/01/2019"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/green"/>
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

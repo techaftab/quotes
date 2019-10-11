@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.quotesin.quotesin">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
+    <application
+        android:name=".utils.MyApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/appicon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
+        tools:replace="android:icon">
+
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
+
+        <service android:name=".notification_firebase.MyFirebaseMessagingService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="bb56ced5025ffde33427f2c9e7545584c987d29f" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            tools:replace="android:theme" />
+
+        <activity android:name=".Splash"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activities.welcome"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".activities.Login"
+            android:theme="@style/AppTheme.WithHead"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.SubscriptionActivity"
+            android:theme="@style/AppTheme.WithHead"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".activities.ConsSelectCountry" />
+
+        <activity android:name=".activities.NotificationActivity" />
+
+        <activity android:name=".activities.ServiceQuestions" />
+
+        <activity android:name=".activities.CountryService" />
+
+        <activity android:name=".activities.ConfirmationActivity" />
+
+        <activity android:name=".activities.How_Work" />
+
+        <activity android:name=".activities.CreateAccount" />
+
+        <activity
+            android:name=".activities.CreateAccountType"/>
+
+        <activity
+            android:name=".activities.Consumer_Signup"/>
+
+        <activity
+            android:name=".activities.Business_Signup"/>
+
+        <activity
+            android:name=".activities.HomeScreen"/>
+
+        <activity
+            android:name=".activities.forgetPassword" />
+
+        <activity
+            android:name=".activities.SocialLogin_Type" />
+
+
+
+        <activity
+            android:name=".activities.LogOut"
+            android:theme="@style/AppThemeDialog" />
+
+    </application>
+
+</manifest>

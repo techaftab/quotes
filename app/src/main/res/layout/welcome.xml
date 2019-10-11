@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:showIn=".activities.welcome">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/FlImage"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/DP100"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/DP45"
+        android:layout_centerHorizontal="true"
+        android:padding="@dimen/DP20"
+        android:src="@mipmap/black_logo" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/pager_intro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/viewPagerCountDots"
+        android:layout_below="@+id/FlImage"
+        android:layout_gravity="center"
+        tools:listitem="@layout/pager_item" />
+
+
+    <LinearLayout
+        android:id="@+id/viewPagerCountDots"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/DP18"
+        android:layout_above="@+id/Ll"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/DP20"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/Ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:padding="@dimen/DP20"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCreate"
+            android:layout_width="fill_parent"
+            android:layout_height="@dimen/DP60"
+            android:layout_marginLeft="@dimen/DP10"
+            android:layout_marginRight="@dimen/DP10"
+            android:layout_marginBottom="@dimen/DP15"
+            android:background="@drawable/button_background"
+            android:textAllCaps="false"
+            android:text="@string/create_acc"
+            android:textColor="@color/white"
+            android:textSize="@dimen/SP14" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/DP10"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/already_acc"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/light_black"/>
+
+            <TextView
+                android:id="@+id/tvSignin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/DP10"
+                android:layout_gravity="center_vertical"
+                android:text="@string/sign_in"
+                android:textColor="@color/splash_color"
+                android:textSize="@dimen/SP18" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

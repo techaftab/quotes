@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="140dp"
+    android:layout_height="130dp"
+    android:gravity="left"
+    android:padding="10sp"
+    android:background="@drawable/border_layout">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+        android:gravity="left"
+        android:weightSum="3"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tvRead"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Read"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="@color/light_black"/>
+
+        <TextView
+            android:id="@+id/tvUnread"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Unread"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-thin"
+            android:textColor="@color/light_black"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:id="@+id/tvAttachment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Attachment"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-thin"
+            android:layout_weight=".8"
+            android:textColor="@color/light_black"/>
+
+
+    </LinearLayout>
+
+</LinearLayout>

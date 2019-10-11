@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/header_image"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/acc_type"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/grey_medium"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_consumer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register As Consumer"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginTop="30sp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_business"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register As Business"
+        android:layout_marginLeft="30sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginTop="30sp"
+        android:fontFamily="sans-serif"
+        android:textColor="@color/white"
+        android:background="@drawable/button_background_green"/>
+
+</LinearLayout>
+

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LLAccountType"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@color/white"
+    tools:context=".activities.CreateAccountType">
+
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="@dimen/DP100"
+        android:layout_height="@dimen/DP100"
+        android:src="@mipmap/quotes_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/DP20"
+        android:layout_gravity="center_horizontal"
+        android:padding="@dimen/DP8"/>
+
+
+    <LinearLayout
+        android:layout_below="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/DP25"
+        android:paddingRight="@dimen/DP25"
+        android:layout_centerVertical="true">
+
+        <include
+            layout="@layout/header_image"
+            android:layout_margin="@dimen/DP25"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/acc_type"
+            android:textColor="@color/grey_medium"
+            android:textSize="@dimen/SP18" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_consumer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DP60"
+            android:layout_margin="@dimen/DP20"
+            android:background="@drawable/button_background"
+            android:text="@string/reg_consumer"
+            android:textColor="@color/white"
+            android:textSize="@dimen/SP18"
+            android:textAllCaps="false"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_business"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/DP60"
+            android:layout_marginLeft="@dimen/DP20"
+            android:layout_marginRight="@dimen/DP20"
+            android:background="@drawable/button_background_green"
+            android:text="@string/reg_bussiness"
+            android:textColor="@color/white"
+            android:textSize="@dimen/SP18"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

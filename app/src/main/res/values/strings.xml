@@ -1,0 +1,159 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">QuotesIn</string>
+    <string name="create_acc">Create an account</string>
+    <string name="acc">Create Account</string>
+    <string name="forget_pass">Forgot Password?</string>
+    <string name="signin">Log in</string>
+    <string name="acc_type">Select Account Type</string>
+    <string name="business_register">Register as Business</string>
+    <string name="consumer_register">Register as consumer</string>
+    <string name="signup">Sign up</string>
+    <string name="submit">Submit</string>
+    <string name="post_enquiry">Post Enquiry</string>
+    <string name="already_acc">Already have an account?</string>
+    <string name="reset">Reset Password</string>
+    <string name="forgot">Forgot Password</string>
+    <string name="send_quotes">Send Quotes</string>
+    <string name="select_subs">Select Subscription Plans as per your requirement.</string>
+    <string name="plans_text">Leads are caped but you can upgrade at any time.</string>
+    <string name="plans_premium">Your account holds no restrictions.</string>
+    <string name="rating1">Overall quality of service</string>
+    <string name="rating2">Service provider\'s communication</string>
+    <string name="rating3">PCompletion time satisfaction</string>
+    <string name="reset_pass">Reset Password</string>
+    <string name="service">Select Product/Service </string>
+    <string name="select_location">Please select location(s) in which you can provide your service</string>
+
+    <string name="contact">You may now contact your Service Supplier</string>
+    <string name="contacts">(The following detail have been provided)</string>
+
+    <string name="contactConsumer">You may now contact your Consumer</string>
+    <string name="form_txt">Please fill in your specific requirements to the best of your knowledge.</string>
+    <string name="form_txt2">(This will determine a more accurate quote).</string>
+    <string name="notify">Push Notifications enable or disable</string>
+    <string name="unread">0(0 new)</string>
+    <string name="date_rec">Date Received</string>
+
+    <string name="about">Loret shdj dolor sit amet, consetur the jubs. Vimanums ac aullljhsh.</string>
+    <string name="rec_quote">    Take Note : All quotes are tailored to your specific enquiry and are only available through quotes.com. Please accept a quote in order to generate a valid unique reference number.</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <array name="user_type_teacher">
+        <item>@mipmap/avatar_male</item>
+        <item>@mipmap/avatar_male</item>
+        <item>@mipmap/avatar_male</item>xcvw744guoGC4Mi64IPrs9uzb
+        <item>@mipmap/avatar_male</item>
+        <item>@mipmap/avatar_male</item>
+        <item>@mipmap/avatar_male</item>
+        <item>@mipmap/avatar_male</item>
+        <item>@mipmap/avatar_male</item>
+        <item>@mipmap/avatar_male</item>
+    </array>
+
+
+    <string-array name="diff_level">
+        <item>Advanced</item>
+        <item>Intermediate</item>
+        <item>Beginner</item>
+    </string-array>
+
+
+    <string-array name="feedback">
+        <item>Please choose an option from the list below</item>
+        <item>The service has been completed</item>
+        <item>The service has not yet been completed</item>
+        <item>The service was not completed</item>
+    </string-array>
+
+
+    <string-array name="price">
+        <item>Select Price type</item>
+        <item>Fixed Price (Will not Change)</item>
+        <item>Estimate</item>
+    </string-array>
+
+    <string-array name="rate">
+        <item>Select Payment Rate</item>
+        <item>One time payment</item>
+        <item>Hourly</item>
+        <item>Weekly</item>
+        <item>Fortnightly</item>
+        <item>Monthly</item>
+        <item>Annually</item>
+    </string-array>
+
+    <string-array name="starting_per">
+        <item>Select Time Frame</item>
+        <item>Immediately</item>
+        <item>In 1 to 2 Days</item>
+        <item>Within 1 Week</item>
+        <item>Within 2 to 3 Week</item>
+        <item>Over the next Month</item>
+        <item>Over the 6 Months</item>
+        <item>Unspecified (More details Needed)</item>
+
+    </string-array>
+
+
+    <string name="com.twitter.sdk.android.CONSUMER_KEY" tools:ignore="ExtraTranslation">xcvw744guoGC4Mi64IPrs9uzb</string>
+    <string name="com.twitter.sdk.android.CONSUMER_SECRET" tools:ignore="ExtraTranslation">bJz5DK0WnOROiyXrvCeb0u9Lvsn5whRZ7XF7iBwivrJAOtWFlp</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in">Sign in</string>
+    <string name="username_email">Username or Email</string>
+    <string name="already_account">Already have an account ?</string>
+    <string name="full_name">Full Name</string>
+    <string name="password">Password</string>
+    <string name="conf_password">Confirm Password</string>
+    <string name="enter_fullname">Please enter Full Name</string>
+    <string name="free_to_contact">free to contact</string>
+    <string name="close">Close</string>
+    <string name="reciept">Reciept</string>
+    <string name="enter_email">Enter Email address</string>
+    <string name="enter_valid_email">Please enter correct email address in correct format.</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="enter_valid_password">Password should be case sensitive, must contain minimum 6 character\" +                             \" and maximum 16 character, and must contain a special character.</string>
+    <string name="enter_confirm_pass">Enter confirm password.</string>
+    <string name="password_not_match">Password does not match</string>
+    <string name="enter_username">Please Enter User Name</string>
+    <string name="enter_valid_mobile">Please enter correct phone no.</string>
+    <string name="enter_address">Please enter your Address</string>
+    <string name="enter_phone">Enter Phone No</string>
+    <string name="enter_bussiness_name">Enter Bussiness Name</string>
+    <string name="enter_website">Enter Website</string>
+    <string name="loading">Loading</string>
+    <string name="or">OR</string>
+    <string name="login_with">Login with</string>
+    <string name="sign_in_with">Sign in with</string>
+    <string name="new_quotesin">New to Quotesin ?</string>
+    <string name="enter_credential">Enter Credential!!!</string>
+    <string name="buss_name">Business Name</string>
+    <string name="username">Username</string>
+    <string name="website">Website</string>
+    <string name="address">Address</string>
+    <string name="sign_up_with">Sign up with</string>
+    <string name="reg_consumer">Register As Consumer</string>
+    <string name="reg_bussiness">Register As Business</string>
+    <string name="rec_enq">Recieved Enquiries</string>
+    <string name="rec_quotes">Recieved Quotes</string>
+    <string name="are_sure_logout">Are you sure You Want To Logout ?</string>
+    <string name="logout">Logout</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="subs_plan">SUBSCRIPTION PLANS</string>
+    <string name="free">FREE</string>
+    <string name="three_month">3 Free Leads Per Month</string>
+    <string name="about_name">About</string>
+    <string name="settings">Settings</string>
+    <string name="get_membership">Get Membership</string>
+    <string name="profile">My Profile</string>
+    <string name="attach">Attach</string>
+
+
+</resources>
+
