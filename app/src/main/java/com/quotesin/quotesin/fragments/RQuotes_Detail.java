@@ -45,32 +45,31 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickListener {
-    @SuppressLint("StaticFieldLeak")
-    public static RQuotes_Detail quotes_detail;
-    public ArrayList<Float> priceArrayList = new ArrayList<>();
+    private ArrayList<Float> priceArrayList = new ArrayList<>();
     View view;
-    TextView tv1, tv2, tvDesc, tvDeadDate, tvDate, tvEmail, tvName, tvFName, tvTitle;
-    ImageView title_img, ivDelete, ivDownload, ivEnqDocument, ivEnqInfo, ivEnqLocation;
-    String image_letter;
-    String userFlag, username, desc, deadline, tittle, location_code, b_name, eid, con_email, post_date, qid, delete_flag, enq_logo, update_visFlag;
+    private TextView tv1, tv2, tvDesc, tvDeadDate, tvDate, tvEmail, tvName, tvFName, tvTitle;
+    private ImageView title_img, ivDelete, ivDownload, ivEnqDocument, ivEnqInfo, ivEnqLocation;
+    private String image_letter;
+    private String userFlag, username, desc, deadline, tittle, location_code, b_name, eid, con_email, post_date, qid, delete_flag, enq_logo, update_visFlag;
     String TAG = this.getClass().getSimpleName();
-    Rec_QuotesAdapter recQuotesAdapter;
-    ArrayList<QuotesDescModel> quotesDescModelArrayList = new ArrayList<>();
-    ArrayList<QuotesDescModel> quotesDescModelArrayList2 = new ArrayList<>();
+    private Rec_QuotesAdapter recQuotesAdapter;
+    private ArrayList<QuotesDescModel> quotesDescModelArrayList = new ArrayList<>();
+    private ArrayList<QuotesDescModel> quotesDescModelArrayList2 = new ArrayList<>();
     ArrayList<QuotesDescModel> filterArraylist = new ArrayList<>();
     RecyclerView recyclerview;
-    TextView tvCEmail, tvMobile, tvTel, tvBAddress;
-    LinearLayout LLFormDetail;
-    String enquiry_postalcode;
-    String[] language = {"Sort by best price", "Sort by Attachment"};
-    Spinner spFilter;
+    private TextView tvCEmail, tvMobile, tvTel, tvBAddress;
+    private LinearLayout LLFormDetail;
+    private String enquiry_postalcode;
+    private String[] language = {"Sort by best price", "Sort by Attachment"};
+    private Spinner spFilter;
 
-    LinearLayout llSpinner;
+    private LinearLayout llSpinner;
 
     public RQuotes_Detail() {
 
@@ -81,15 +80,14 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.rquotes__detail, container, false);
-        quotes_detail = RQuotes_Detail.this;
+      //  RQuotes_Detail quotes_detail = RQuotes_Detail.this;
 
         initViews();
         getDataFromBundle();
         registerclickListener();
         callApi();
 
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, language);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(Objects.requireNonNull(getActivity()), android.R.layout.simple_spinner_item, language);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spFilter.setAdapter(adapter);
 
@@ -150,7 +148,7 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
 
 
     private void callApi() {
-        if (CommonMethod.isNetworkAvailable(getActivity())) {
+        if (CommonMethod.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
             new QuotesDetailAsyncTask().execute();
             new EnquiryDetailAsyncTask().execute();
         } else {
@@ -226,7 +224,7 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
 
     @Override
     public void GetClickedItem(String q_id, String userId) {
-        if (CommonMethod.isNetworkAvailable(getActivity())) {
+        if (CommonMethod.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
             if (userId.equals("reject"))
                 new QuotesAcceptAsyncTask(userId, q_id).execute();
             else if (userId.equals("accept")) {
@@ -296,7 +294,7 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                 if (!TextUtils.isEmpty(enquiry_postalcode)) {
                     Intent intent = new Intent(Intent.ACTION_VIEW);
                     intent.setData(Uri.parse("http://maps.google.co.in/maps?q=" + enquiry_postalcode));
-                    if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
+                    if (intent.resolveActivity(Objects.requireNonNull(getActivity()).getPackageManager()) != null) {
                         startActivity(intent);
                     }
                 }
@@ -310,23 +308,16 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
     private void showAlert() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setMessage("Are you sure to delete this Enquiry!!").setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
+                .setPositiveButton("OK", (dialog, id) -> {
 
-                        if (CommonMethod.isNetworkAvailable(getActivity())) {
-                            new DeleteEnquiryAsyncTask(eid).execute();
-                        } else {
-                            Toast.makeText(getActivity(), "Check Internet Connection", Toast.LENGTH_LONG).show();
+                    if (CommonMethod.isNetworkAvailable(Objects.requireNonNull(getActivity()))) {
+                        new DeleteEnquiryAsyncTask(eid).execute();
+                    } else {
+                        Toast.makeText(getActivity(), "Check Internet Connection", Toast.LENGTH_LONG).show();
 
-                        }
                     }
                 })
-                .setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-
-                        dialog.dismiss();
-                    }
-                });
+                .setNegativeButton("NO", (dialog, id) -> dialog.dismiss());
 
 
         try {
@@ -338,7 +329,7 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
 
 
     private void finishCurrentFragment() {
-        int backStackCount = getActivity().getSupportFragmentManager().getBackStackEntryCount();
+        int backStackCount = Objects.requireNonNull(getActivity()).getSupportFragmentManager().getBackStackEntryCount();
 
         if (backStackCount >= 1) {
             getActivity().getSupportFragmentManager().popBackStack();
@@ -363,10 +354,10 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
         JSONObject jObject;
         String mail_id;
         private String response;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
-        public DeleteEnquiryAsyncTask(String mail_id) {
+        DeleteEnquiryAsyncTask(String mail_id) {
             this.mail_id = mail_id;
         }
 
@@ -400,11 +391,6 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                         finishCurrentFragment();
                         Toast.makeText(getActivity(), responseMessage, Toast.LENGTH_LONG).show();
 
-                        try {
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
                     } else if (status.equals("Failed")) {
                         Toast.makeText(getActivity(), responseMessage, Toast.LENGTH_LONG).show();
                     } else {
@@ -444,16 +430,17 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     private class QuotesAcceptAsyncTask extends AsyncTask<String, Void, String> {
 
         ProgressD mProgressD;
         JSONObject jObject;
         String q_id, status_accept;
         private String response;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
-        public QuotesAcceptAsyncTask(String status, String qid) {
+        QuotesAcceptAsyncTask(String status, String qid) {
             this.q_id = qid;
             this.status_accept = status;
 
@@ -485,25 +472,22 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                     status = jObject.getString("Status");
                     responseMessage = jObject.getString("message");
                     if (status.equalsIgnoreCase("Success")) {
-                        try {
-                            JSONArray jsonarry = jObject.getJSONArray("result");
-                            if (jsonarry != null) {
-
-                                for (int i = 0; i < jsonarry.length(); i++) {
-                                    JSONObject data = jsonarry.getJSONObject(i);
-
-                                }
-
-                            }
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+//                        try {
+//                          //  JSONArray jsonarry = jObject.getJSONArray("result");
+//
+////                            for (int i = 0; i < jsonarry.length(); i++) {
+////                              //  JSONObject data = jsonarry.getJSONObject(i);
+////
+////                            }
+//
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                        }
 
                         if (responseMessage.equalsIgnoreCase("Quote Rejected")) {
                             finishCurrentFragment();
-                        } else if (responseMessage.equalsIgnoreCase("Your quote accepted")) {
-                       /*     Bundle bundle = new Bundle();
+                        } /*else if (responseMessage.equalsIgnoreCase("Your quote accepted")) {
+                       *//*     Bundle bundle = new Bundle();
                             HomeScreen activity = (HomeScreen) view.getContext();
                             AfterQ_AcceptForm afterQAcceptForm = new AfterQ_AcceptForm();
                             bundle.putString("eid", AppData.getInstance().getEid());
@@ -513,8 +497,8 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                             afterQAcceptForm.setArguments(bundle);
                             activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, afterQAcceptForm).addToBackStack(null).commit();
 
-*/
-                        }
+*//*
+                        }*/
                     } else {
                         Toast.makeText(getActivity(), "Please check your internet connection.", Toast.LENGTH_LONG).show();
                     }
@@ -562,9 +546,9 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
         ProgressD mProgressD;
         JSONObject jObject;
         private String response;
-        private String status = "";
-        private String responseMessage = "";
-        private String count = "";
+        String status = "";
+        String responseMessage = "";
+        String count = "";
 
         @Override
         protected void onPreExecute() {
@@ -607,7 +591,7 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                         try {
                             JSONArray jsonarry = jObject.getJSONArray("result");
 
-                            if (jsonarry != null) {
+                          //  if (jsonarry != null) {
                                 quotesDescModelArrayList.clear();
                                 for (int i = 0; i < jsonarry.length(); i++) {
                                     JSONObject data = jsonarry.getJSONObject(i);
@@ -656,7 +640,7 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                                     }
                                     quotesDescModelArrayList.add(quotesDescModel);
                                 }
-                            }
+                           // }
 
                             if (quotesDescModelArrayList.size() > 0) {
 
@@ -668,9 +652,9 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                             e.printStackTrace();
                         }
 
-                    } else if (status.equals("Failed")) {
+                    } /*else if (status.equals("Failed")) {
                         // Toast.makeText(getActivity(), responseMessage, Toast.LENGTH_LONG).show();
-                    } else {
+                    } */else {
                         Toast.makeText(getActivity(), "Please check your internet connection.", Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
@@ -724,8 +708,8 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
         ProgressD mProgressD;
         JSONObject jObject;
         private String response;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -756,7 +740,7 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
 
                         try {
                             JSONObject jsonObject = jObject.getJSONObject("result");
-                            if (jsonObject != null) {
+                         //   if (jsonObject != null) {
 
                                 enq_logo = jsonObject.getString("enquiry_loco");
                                 enquiry_postalcode = jsonObject.getString("enquiry_postalcode");
@@ -770,14 +754,11 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
 
                                     if (str1.equals("site")) {
                                         ivEnqDocument.setVisibility(View.VISIBLE);
-                                        ivEnqDocument.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                String url = "http://dev.webmobril.services/quotesinapp/" + enq_logo;
-                                                Intent i = new Intent(Intent.ACTION_VIEW);
-                                                i.setData(Uri.parse(url));
-                                                startActivity(i);
-                                            }
+                                        ivEnqDocument.setOnClickListener(v -> {
+                                            String url = "http://dev.webmobril.services/quotesinapp/" + enq_logo;
+                                            Intent i = new Intent(Intent.ACTION_VIEW);
+                                            i.setData(Uri.parse(url));
+                                            startActivity(i);
                                         });
                                     } else {
                                         ivEnqDocument.setImageResource(R.mipmap.no_file);
@@ -797,7 +778,7 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                                 {
                                     Picasso.get().load("http://dev.webmobril.services/quotesinapp/" + jsonUser.getString("business_logo")).into(ivEnqUserLogo);
                                 }*/
-                            }
+                           // }
 
                             JSONArray jsonArrayAttach = jObject.getJSONArray("attachment");
                             if (jsonArrayAttach.length() <= 1) {
@@ -810,15 +791,14 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                                     ivEnqInfo.setImageResource(R.mipmap.no_attachform);
                                     ivEnqInfo.setEnabled(false);
                                 } else {
-                                    ivEnqInfo.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            AppData.getInstance().setEid(eid);
-                                            HomeScreen activity1 = (HomeScreen) getContext();
-                                            view_form viewForm = new view_form();
+                                    ivEnqInfo.setOnClickListener(v -> {
+                                        AppData.getInstance().setEid(eid);
+                                        HomeScreen activity1 = (HomeScreen) getContext();
+                                        view_form viewForm = new view_form();
+                                        if (activity1 != null) {
                                             activity1.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, viewForm).addToBackStack(null).commit();
-
                                         }
+
                                     });
                                 }
                             }
@@ -871,9 +851,9 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
         JSONObject jObject;
         String q_id;
         private String response;
-        private String status = "";
+         String status = "";
 
-        public ReadQuoteAsyncTask(String q_id) {
+         ReadQuoteAsyncTask(String q_id) {
             this.q_id = q_id;
         }
 
@@ -901,19 +881,14 @@ public class RQuotes_Detail extends Fragment implements GetMyItem, View.OnClickL
                 try {
                     jObject = new JSONObject(response);
                     status = jObject.getString("Status");
-                    if (status.equalsIgnoreCase("Success")) {
-                        try {
-                            // Toast.makeText(getActivity(), "ksjsd", Toast.LENGTH_LONG).show();
-
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-
-                    } else if (status.equals("Failed")) {
-                        // Toast.makeText(getActivity(), responseMessage, Toast.LENGTH_LONG).show();
-                    } else {
-                        Toast.makeText(getActivity(), "Please check your internet connection.", Toast.LENGTH_LONG).show();
-                    }
+//                    if (status.equalsIgnoreCase("Success")) {
+//
+//
+//                    } else if (status.equals("Failed")) {
+//                        // Toast.makeText(getActivity(), responseMessage, Toast.LENGTH_LONG).show();
+//                    } else {
+//                        Toast.makeText(getActivity(), "Please check your internet connection.", Toast.LENGTH_LONG).show();
+//                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

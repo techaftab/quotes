@@ -614,7 +614,7 @@ public class AfterAcceptBussDetail extends Fragment implements View.OnClickListe
 
             try {
                 client.connectForMultipart();
-                Log.e(TAG, "Indox after connection url: " + url);
+                Log.e(TAG, "Inbox after connection url: " + url);
                 Log.e(TAG, "email_id: " + eid);
 
 
@@ -624,7 +624,7 @@ public class AfterAcceptBussDetail extends Fragment implements View.OnClickListe
                 client.finishMultipart();
 
                 response = client.getResponse();
-                Log.e(TAG, "Indox response :" + response);
+                Log.e(TAG, "Inbox response :" + response);
 
             } catch (Exception e) {
                 e.printStackTrace();

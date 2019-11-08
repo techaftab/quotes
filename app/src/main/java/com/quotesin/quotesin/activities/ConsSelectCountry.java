@@ -1,13 +1,8 @@
 package com.quotesin.quotesin.activities;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.AsyncTask;
-
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -21,6 +16,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.quotesin.quotesin.R;
 import com.quotesin.quotesin.model.CitiesModel;
 import com.quotesin.quotesin.model.CountriesModel;
@@ -32,7 +30,6 @@ import com.quotesin.quotesin.utils.HttpClient;
 import com.quotesin.quotesin.utils.LoginPreferences;
 import com.quotesin.quotesin.utils.ProgressD;
 
-import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -40,7 +37,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import libs.mjn.prettydialog.PrettyDialog;
-import libs.mjn.prettydialog.PrettyDialogCallback;
 
 import static com.quotesin.quotesin.utils.CommonMethod.hideSoftKeyboard;
 
@@ -48,9 +44,9 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
 
     Spinner spCountry, spCity, spState;
 
-    ArrayList<CountriesModel> countryArrayList = new ArrayList<CountriesModel>();
-    ArrayList<StatesModel> statesModelArrayList = new ArrayList<StatesModel>();
-    ArrayList<CitiesModel> citiesModelArrayList = new ArrayList<CitiesModel>();
+    ArrayList<CountriesModel> countryArrayList = new ArrayList<>();
+    ArrayList<StatesModel> statesModelArrayList = new ArrayList<>();
+    ArrayList<CitiesModel> citiesModelArrayList = new ArrayList<>();
 
     ArrayAdapter<String> adapterSpCountry;
     ArrayAdapter<String> adapterSpState;
@@ -200,8 +196,9 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
 
 
         adapterSpState = new ArrayAdapter<String>(ConsSelectCountry.this, R.layout.spinner_layout_black) {
+            @NonNull
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
                 View v = super.getView(position, convertView, parent);
                 if (position == getCount()) {
@@ -224,8 +221,9 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
             }
         };
         adapterSpCity = new ArrayAdapter<String>(ConsSelectCountry.this, R.layout.spinner_layout_black) {
+            @NonNull
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
                 View v = super.getView(position, convertView, parent);
                 if (position == getCount()) {
@@ -335,8 +333,8 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
         ProgressD mProgressD;
         JSONObject jObject;
         private String result;
-        private String status = "";
-        private String responseMessage = "";
+         String status = "";
+         String responseMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -347,7 +345,7 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
         @Override
         protected String doInBackground(String... params) {
             try {
-                ArrayList<NameValuePair> postData = new ArrayList<NameValuePair>();
+              //  ArrayList<NameValuePair> postData = new ArrayList<NameValuePair>();
                 result = CustomHttpClient.executeHttpGet(APIUrl.get_all_countries);
                 System.out.print(result);
             } catch (Exception e) {
@@ -372,7 +370,7 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
 
                     if (status.equalsIgnoreCase("success")) {
                         JSONArray jsonArray = jObject.getJSONArray("message");
-                        countryArrayList = new ArrayList<CountriesModel>();
+                        countryArrayList = new ArrayList<>();
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject post = jsonArray.getJSONObject(i);
 
@@ -421,7 +419,7 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
             adapterSpCountry.add(model1.getCountry_name());
         }
 
-        spCountry.setAdapter(new ArrayAdapter<String>(ConsSelectCountry.this, R.layout.spinner_layout_black, countries));
+        spCountry.setAdapter(new ArrayAdapter<>(ConsSelectCountry.this, R.layout.spinner_layout_black, countries));
     }
 
 
@@ -431,8 +429,8 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
         ProgressD mProgressD;
         JSONObject jObject;
         private String response;
-        private String status = "";
-        private String responseMessage = "";
+         String status = "";
+         String responseMessage = "";
 
         String CountryId;
 
@@ -475,7 +473,7 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
                     if (status.equalsIgnoreCase("success")) {
                         JSONArray jsonArray = jObject.getJSONArray("message");
 
-                        statesModelArrayList = new ArrayList<StatesModel>();
+                        statesModelArrayList = new ArrayList<>();
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject post = jsonArray.getJSONObject(i);
@@ -517,7 +515,7 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
             adapterSpCountry.add(model1.getState_name());
         }
 
-        spState.setAdapter(new ArrayAdapter<String>(ConsSelectCountry.this, R.layout.spinner_layout_black, states));
+        spState.setAdapter(new ArrayAdapter<>(ConsSelectCountry.this, R.layout.spinner_layout_black, states));
     }
 
 
@@ -527,8 +525,8 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
         ProgressD mProgressD;
         JSONObject jObject;
         private String response;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -566,7 +564,7 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
                     if (status.equalsIgnoreCase("success")) {
                         JSONArray jsonArray = jObject.getJSONArray("message");
 
-                        citiesModelArrayList = new ArrayList<CitiesModel>();
+                        citiesModelArrayList = new ArrayList<>();
 
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject post = jsonArray.getJSONObject(i);
@@ -604,7 +602,7 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
             cities.add(model1.getCity_name());
             adapterSpCountry.add(model1.getCity_name());
         }
-        spCity.setAdapter(new ArrayAdapter<String>(ConsSelectCountry.this, R.layout.spinner_layout_black, cities));
+        spCity.setAdapter(new ArrayAdapter<>(ConsSelectCountry.this, R.layout.spinner_layout_black, cities));
     }
 
 
@@ -613,8 +611,8 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
 
         ProgressD mProgressD;
         JSONObject jObject;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
         private String response;
 
         @Override
@@ -725,6 +723,7 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
                                 dialog.show();*/
 
                                 final PrettyDialog pDialog = new PrettyDialog(ConsSelectCountry.this);
+                                // button OnClick listener
                                 pDialog
                                         .setTitle("Congratulations! \n Registered Successfully")
                                         .setMessage("You have been successfully registered.")
@@ -733,16 +732,13 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
                                                 "OK",                    // button text
                                                 R.color.pdlg_color_white,        // button text color
                                                 R.color.splash_color,        // button background color
-                                                new PrettyDialogCallback() {        // button OnClick listener
-                                                    @Override
-                                                    public void onClick() {
-                                                        Intent i = new Intent(ConsSelectCountry.this, HomeScreen.class);
-                                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                        overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
-                                                        startActivity(i);
-                                                        finish();
-                                                        pDialog.dismiss();
-                                                    }
+                                                () -> {
+                                                    Intent i = new Intent(ConsSelectCountry.this, HomeScreen.class);
+                                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
+                                                    startActivity(i);
+                                                    finish();
+                                                    pDialog.dismiss();
                                                 }
                                         )
                                         .setAnimationEnabled(true)
@@ -754,6 +750,7 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
 
 
                                 final PrettyDialog pDialog = new PrettyDialog(ConsSelectCountry.this);
+                                // button OnClick listener
                                 pDialog.setTitle("Congratulations! \n Registered Successfully")
                                         .setMessage("An email has been sent to your \n registered email for verification.")
                                         .setIcon(R.mipmap.quotes_logo)
@@ -761,16 +758,13 @@ public class ConsSelectCountry extends AppCompatActivity implements View.OnClick
                                                 "OK",                    // button text
                                                 R.color.pdlg_color_white,        // button text color
                                                 R.color.splash_color,        // button background color
-                                                new PrettyDialogCallback() {        // button OnClick listener
-                                                    @Override
-                                                    public void onClick() {
-                                                        Intent i = new Intent(ConsSelectCountry.this, Login.class);
-                                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                        overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
-                                                        startActivity(i);
-                                                        finish();
-                                                        pDialog.dismiss();
-                                                    }
+                                                () -> {
+                                                    Intent i = new Intent(ConsSelectCountry.this, Login.class);
+                                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
+                                                    startActivity(i);
+                                                    finish();
+                                                    pDialog.dismiss();
                                                 }
                                         )
                                         .setAnimationEnabled(true)

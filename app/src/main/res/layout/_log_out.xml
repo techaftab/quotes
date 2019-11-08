@@ -4,9 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardCornerRadius="@dimen/DP10"
-    app:cardElevation="@dimen/DP6"
+    app:cardCornerRadius="@dimen/_6sdp"
+    app:cardElevation="@dimen/_8sdp"
     app:cardBackgroundColor="@color/white"
+    app:contentPadding="@dimen/_8sdp"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
@@ -42,17 +43,15 @@
             android:layout_marginTop="@dimen/DP10"
             android:padding="@dimen/DP5"
             android:weightSum="1"
-            android:layout_marginBottom="@dimen/DP8"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btn_logout_cancel"
                 android:layout_width="match_parent"
                 android:layout_weight="0.50"
-                android:layout_marginBottom="@dimen/DP8"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginEnd="@dimen/DP4"
+                android:layout_marginEnd="@dimen/_2sdp"
                 android:textColor="@android:color/white"
                 android:textStyle="bold"
                 android:background="@drawable/cornerboder_theme_green"
@@ -63,10 +62,9 @@
                 android:id="@+id/btn_logout_ok"
                 android:layout_width="match_parent"
                 android:layout_weight="0.50"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/DP8"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/DP4"
+                android:layout_marginStart="@dimen/_2sdp"
                 android:textStyle="bold"
                 android:textColor="@android:color/white"
                 android:background="@drawable/cornerboder_theme_red"

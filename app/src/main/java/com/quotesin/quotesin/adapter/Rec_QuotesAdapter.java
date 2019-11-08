@@ -37,7 +37,7 @@ public class Rec_QuotesAdapter extends RecyclerView.Adapter<Rec_QuotesAdapter.Vi
     private GetMyItem getMyItem;
     private String update_show;
     private String visibleFlag = "0";
-    private String firstTimeVisi = "0";
+  //  private String firstTimeVisi = "0";
 
     public Rec_QuotesAdapter(Context context, ArrayList<QuotesDescModel> models, GetMyItem getMyItem, String update_visFlag) {
         this.models = models;
@@ -88,14 +88,11 @@ public class Rec_QuotesAdapter extends RecyclerView.Adapter<Rec_QuotesAdapter.Vi
             if (str1.equals("site")) {
                 viewHolder.ivQuoteImage.setVisibility(View.VISIBLE);
 
-                viewHolder.ivQuoteImage.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String url = APIUrl.IMAGE_BASE_URL + str;
-                        Intent i = new Intent(Intent.ACTION_VIEW);
-                        i.setData(Uri.parse(url));
-                        context.startActivity(i);
-                    }
+                viewHolder.ivQuoteImage.setOnClickListener(v -> {
+                    String url = APIUrl.IMAGE_BASE_URL + str;
+                    Intent i1 = new Intent(Intent.ACTION_VIEW);
+                    i1.setData(Uri.parse(url));
+                    context.startActivity(i1);
                 });
 
             } else {
@@ -108,32 +105,26 @@ public class Rec_QuotesAdapter extends RecyclerView.Adapter<Rec_QuotesAdapter.Vi
             if (!TextUtils.isEmpty(AppData.getInstance().getUpdate_flag())) {
                 if (!AppData.getInstance().getUpdate_flag().equals("no")) {
                     viewHolder.RlUpdate.setVisibility(View.VISIBLE);
-                    viewHolder.btn_update.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Bundle bundle = new Bundle();
-                            HomeScreen activity = (HomeScreen) v.getContext();
-                            Enquiry_Reply enquiryReply = new Enquiry_Reply();
-                            bundle.putString("mail_id", models.get(i).getE_id());
-                            bundle.putString("update_quote", "update");
-                            enquiryReply.setArguments(bundle);
-                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, enquiryReply).addToBackStack(null).commit();
-                        }
+                    viewHolder.btn_update.setOnClickListener(v -> {
+                        Bundle bundle = new Bundle();
+                        HomeScreen activity = (HomeScreen) v.getContext();
+                        Enquiry_Reply enquiryReply = new Enquiry_Reply();
+                        bundle.putString("mail_id", models.get(i).getE_id());
+                        bundle.putString("update_quote", "update");
+                        enquiryReply.setArguments(bundle);
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, enquiryReply).addToBackStack(null).commit();
                     });
                 } else if (!TextUtils.isEmpty(update_show)) {
                     if (update_show.equals("yes"))
                         viewHolder.RlUpdate.setVisibility(View.VISIBLE);
-                    viewHolder.btn_update.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Bundle bundle = new Bundle();
-                            HomeScreen activity = (HomeScreen) v.getContext();
-                            Enquiry_Reply enquiryReply = new Enquiry_Reply();
-                            bundle.putString("mail_id", models.get(i).getE_id());
-                            bundle.putString("update_quote", "update");
-                            enquiryReply.setArguments(bundle);
-                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, enquiryReply).addToBackStack(null).commit();
-                        }
+                    viewHolder.btn_update.setOnClickListener(v -> {
+                        Bundle bundle = new Bundle();
+                        HomeScreen activity = (HomeScreen) v.getContext();
+                        Enquiry_Reply enquiryReply = new Enquiry_Reply();
+                        bundle.putString("mail_id", models.get(i).getE_id());
+                        bundle.putString("update_quote", "update");
+                        enquiryReply.setArguments(bundle);
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, enquiryReply).addToBackStack(null).commit();
                     });
                 }
             }
@@ -149,19 +140,14 @@ public class Rec_QuotesAdapter extends RecyclerView.Adapter<Rec_QuotesAdapter.Vi
                     viewHolder.RlFeedback.setVisibility(View.VISIBLE);
                     viewHolder.LLAccept.setVisibility(View.GONE);
 
-                    viewHolder.btn_Feedback.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Bundle bundle = new Bundle();
-                            HomeScreen activity = (HomeScreen) v.getContext();
-                            LeaveFeedBAck enquiryReply = new LeaveFeedBAck();
-                            bundle.putString("qid", models.get(i).getQ_id());
-                            bundle.putString("price", models.get(i).getQuote_price());
-
-                            enquiryReply.setArguments(bundle);
-                            activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, enquiryReply).addToBackStack(null).commit();
-                        }
-
+                    viewHolder.btn_Feedback.setOnClickListener(v -> {
+                        Bundle bundle = new Bundle();
+                        HomeScreen activity = (HomeScreen) v.getContext();
+                        LeaveFeedBAck enquiryReply = new LeaveFeedBAck();
+                        bundle.putString("qid", models.get(i).getQ_id());
+                        bundle.putString("price", models.get(i).getQuote_price());
+                        enquiryReply.setArguments(bundle);
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, enquiryReply).addToBackStack(null).commit();
                     });
 
                 } else {
@@ -169,38 +155,27 @@ public class Rec_QuotesAdapter extends RecyclerView.Adapter<Rec_QuotesAdapter.Vi
                     viewHolder.RlFeedback.setVisibility(View.GONE);
                 }
 
-        viewHolder.btnAccept.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getMyItem.GetClickedItem(models.get(i).getQ_id(), "accept");
-                AppData.getInstance().setQid(models.get(i).getQ_id());
-                AppData.getInstance().setBname(models.get(i).getBusiness_username());
-                AppData.getInstance().setEid(models.get(i).getE_id());
-                AppData.getInstance().setQamt(models.get(i).getQuote_price());
+        viewHolder.btnAccept.setOnClickListener(v -> {
+            getMyItem.GetClickedItem(models.get(i).getQ_id(), "accept");
+            AppData.getInstance().setQid(models.get(i).getQ_id());
+            AppData.getInstance().setBname(models.get(i).getBusiness_username());
+            AppData.getInstance().setEid(models.get(i).getE_id());
+            AppData.getInstance().setQamt(models.get(i).getQuote_price());
 
-            }
         });
 
-        viewHolder.btnReject.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getMyItem.GetClickedItem(models.get(i).getQ_id(), "reject");
-            }
-        });
+        viewHolder.btnReject.setOnClickListener(v -> getMyItem.GetClickedItem(models.get(i).getQ_id(), "reject"));
 
-        viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (visibleFlag.equals("0")) {
-                    viewHolder.linearLayout.setVisibility(View.VISIBLE);
-                    visibleFlag = "1";
+        viewHolder.relativeLayout.setOnClickListener(v -> {
+            if (visibleFlag.equals("0")) {
+                viewHolder.linearLayout.setVisibility(View.VISIBLE);
+                visibleFlag = "1";
 
-                    getMyItem.GetClickedItem(models.get(i).getQ_id(), "read_quote");
+                getMyItem.GetClickedItem(models.get(i).getQ_id(), "read_quote");
 
-                } else {
-                    viewHolder.linearLayout.setVisibility(View.GONE);
-                    visibleFlag = "0";
-                }
+            } else {
+                viewHolder.linearLayout.setVisibility(View.GONE);
+                visibleFlag = "0";
             }
         });
     }

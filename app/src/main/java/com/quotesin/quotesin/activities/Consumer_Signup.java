@@ -4,7 +4,6 @@ package com.quotesin.quotesin.activities;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.quotesin.quotesin.R;
 import com.quotesin.quotesin.config.Configuration;
@@ -24,9 +25,6 @@ import com.quotesin.quotesin.utils.ProgressD;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import libs.mjn.prettydialog.PrettyDialog;
-import libs.mjn.prettydialog.PrettyDialogCallback;
 
 public class Consumer_Signup extends AppCompatActivity implements View.OnClickListener {
     EditText etName, etUserName, etEmail, etPhone, etPass,etConfirmPass, etaddress;

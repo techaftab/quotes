@@ -264,7 +264,7 @@ public class AfterAcceptConsDetail extends Fragment implements View.OnClickListe
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            Log.e(TAG, "Indox api response is " + response);
+            Log.e(TAG, "Inbox api response is " + response);
             if (response == null) {
                 Toast.makeText(getActivity(), "Please check your Internet.", Toast.LENGTH_LONG).show();
             } else {

@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static com.quotesin.quotesin.fragments.Indox.Current;
+import static com.quotesin.quotesin.fragments.Inbox.Current;
 
 public class AdapterTrash extends RecyclerView.Adapter<AdapterTrash.ViewHolder> {
 

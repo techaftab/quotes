@@ -17,7 +17,7 @@ public class How_Work extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_how__work);
 
-        mywebview = (WebView) findViewById(R.id.webView);
+        mywebview =  findViewById(R.id.webView);
         mywebview.setWebViewClient(new myWebClient());
 
         mywebview.loadUrl("http://dev.webmobril.services/quotesin/how-it-works/");

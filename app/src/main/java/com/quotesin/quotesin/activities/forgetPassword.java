@@ -2,13 +2,14 @@ package com.quotesin.quotesin.activities;
 
 import android.annotation.SuppressLint;
 import android.os.AsyncTask;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.quotesin.quotesin.R;
 import com.quotesin.quotesin.utils.APIUrl;
@@ -24,7 +25,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import libs.mjn.prettydialog.PrettyDialog;
-import libs.mjn.prettydialog.PrettyDialogCallback;
 
 
 public class forgetPassword extends AppCompatActivity implements View.OnClickListener {
@@ -91,6 +91,7 @@ public class forgetPassword extends AppCompatActivity implements View.OnClickLis
         } else if (!CommonMethod.isValidEmaillId(etEmail.getText().toString().trim())) {
            // CommonMethod.showAlert("Please enter valid Email", forgetPassword.this);
             final PrettyDialog pDialog = new PrettyDialog(this);
+            // button OnClick listener
             pDialog
                     .setTitle("QuotesIn")
                     .setMessage("Please enter correct email address in correct format.")
@@ -99,12 +100,7 @@ public class forgetPassword extends AppCompatActivity implements View.OnClickLis
                             "OK",                    // button text
                             R.color.pdlg_color_white,        // button text color
                             R.color.splash_color,        // button background color
-                            new PrettyDialogCallback() {        // button OnClick listener
-                                @Override
-                                public void onClick() {
-                                    pDialog.dismiss();
-                                }
-                            }
+                            pDialog::dismiss
                     )
                     .setAnimationEnabled(true)
                     .show();
@@ -119,8 +115,8 @@ public class forgetPassword extends AppCompatActivity implements View.OnClickLis
         ProgressD mProgressD;
         JSONObject jObject;
         private String result;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -133,7 +129,7 @@ public class forgetPassword extends AppCompatActivity implements View.OnClickLis
         protected String doInBackground(String... params) {
             try {
                 Log.e(TAG, "Email is :" +etEmail.getText().toString());
-                ArrayList<NameValuePair> postData = new ArrayList<NameValuePair>();
+                ArrayList<NameValuePair> postData = new ArrayList<>();
                 postData.add(new BasicNameValuePair("email",etEmail.getText().toString()));
                 result = CustomHttpClient.executeHttpPost(APIUrl.forget_password, postData);
                 System.out.print(result);

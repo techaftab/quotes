@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,60 +13,59 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="53sp"
-            android:gravity="center"
+            android:layout_height="@dimen/_55sdp"
             android:orientation="horizontal"
-            android:weightSum="3">
+            android:weightSum="1">
 
             <ImageView
                 android:id="@+id/ivCancel"
-                android:layout_width="20sp"
-                android:layout_height="20sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:padding="5sp"
-                android:background="@mipmap/cancel_gry" />
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_weight="0.40"
+                android:padding="@dimen/_15sdp"
+                android:layout_gravity="center_vertical"
+                android:src="@mipmap/cancel_gry" />
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5sp"
-                android:layout_weight="2.3"
-                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.15"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="-10dp"
-                    android:text="Post Enquiry"
+                    android:text="@string/post_enquiry"
+                    android:gravity="center_horizontal"
                     android:textColor="@color/splash_color"
-                    android:textSize="20sp" />
+                    android:textSize="@dimen/_16ssp" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="-10dp"
-                    android:text="Get Quotes"
+                    android:text="@string/get_quotes"
+                    android:gravity="center_horizontal"
+                    android:paddingBottom="@dimen/_2sdp"
                     android:textColor="@color/grey_txt"
-                    android:textSize="13sp" />
+                    android:textSize="@dimen/_12ssp" />
             </LinearLayout>
 
             <ImageView
                 android:id="@+id/ivattach"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_weight="0.45"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:padding="7sp"
+                android:layout_gravity="center_vertical"
+                android:padding="@dimen/_8sdp"
                 android:background="@drawable/ic_attach_file_grey_24dp" />
 
         </LinearLayout>
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
         <LinearLayout
@@ -103,7 +103,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:visibility="gone"
             android:background="#c2c2c2" />
 
@@ -143,7 +143,7 @@
         <TextView
             android:layout_width="match_parent"
             android:visibility="gone"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
         <LinearLayout
@@ -181,7 +181,7 @@
         <TextView
             android:layout_width="match_parent"
             android:visibility="gone"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
         <FrameLayout
@@ -206,9 +206,8 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
-
 
         <FrameLayout
             android:id="@+id/flServices"
@@ -226,7 +225,6 @@
                 style="@style/SpinnerTheme"
                 android:layout_marginLeft="-5sp"
                 android:textColor="@color/grey_txt" />
-
 
             <TextView
                 android:id="@+id/tvView"
@@ -252,7 +250,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
 
@@ -267,7 +265,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10sp"
-                android:text="Deadline :"
+                android:text="@string/deadline"
                 android:layout_centerInParent="true"
                 android:layout_alignParentLeft="true"
                 android:textColor="@color/grey_txt"
@@ -303,7 +301,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
         <LinearLayout
@@ -316,7 +314,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10sp"
-                android:text="Subject:"
+                android:text="@string/subject"
                 android:textColor="@color/grey_txt"
                 android:textSize="16sp" />
 
@@ -338,7 +336,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
         <LinearLayout
@@ -353,7 +351,7 @@
                 android:layout_margin="10sp"
                 android:background="@null"
                 android:gravity="top|left"
-                android:hint="Message / Description : "
+                android:hint="@string/msg_desc"
                 android:textSize="15sp"
                 android:inputType="textMultiLine"
                 android:fontFamily="sans-serif-thin"
@@ -364,7 +362,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
         <LinearLayout
@@ -377,7 +375,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10sp"
-                android:text="Your Location :"
+                android:text="@string/your_location"
                 android:textColor="@color/grey_txt"
                 android:textSize="16sp" />
 
@@ -400,7 +398,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
 
@@ -419,7 +417,7 @@
                 android:layout_marginEnd="20sp"
                 android:ellipsize="end"
                 android:gravity="left"
-                android:hint="Choose Country"
+                android:hint="@string/choose_country"
                 android:maxLines="1"
                 android:paddingTop="5dp"
                 android:paddingEnd="5dp"
@@ -441,7 +439,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
         <FrameLayout
@@ -456,7 +454,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_margin="10sp"
-                android:hint="Choose State"
+                android:hint="@string/choose_state"
                 android:maxLines="1"
                 android:gravity="left"
                 android:ellipsize="end"
@@ -480,7 +478,7 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
         <FrameLayout
@@ -495,7 +493,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:layout_margin="10sp"
-                android:hint="Choose City"
+                android:hint="@string/choose_city"
                 android:maxLines="1"
                 android:gravity="left"
                 android:ellipsize="end"
@@ -519,19 +517,15 @@
 
         <TextView
             android:layout_width="match_parent"
-            android:layout_height="1sp"
+            android:layout_height="@dimen/_1sdp"
             android:background="#c2c2c2" />
 
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSubmit"
             android:layout_width="match_parent"
-            android:layout_height="47sp"
-            android:layout_gravity="right"
-            android:layout_marginLeft="40sp"
-            android:layout_marginTop="22sp"
-            android:layout_marginRight="40sp"
-            android:layout_marginBottom="35dp"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_margin="@dimen/_20sdp"
             android:background="@drawable/button_background"
             android:fontFamily="sans-serif"
             android:gravity="center"

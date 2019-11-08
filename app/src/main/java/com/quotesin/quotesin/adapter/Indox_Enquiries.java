@@ -21,7 +21,7 @@ import com.amulyakhare.textdrawable.TextDrawable;
 import com.quotesin.quotesin.R;
 import com.quotesin.quotesin.activities.HomeScreen;
 import com.quotesin.quotesin.fragments.AfterAcceptConsDetail;
-import com.quotesin.quotesin.fragments.Indox_Detail;
+import com.quotesin.quotesin.fragments.Inbox_Detail;
 import com.quotesin.quotesin.model.Indox_Enquiry_Model;
 import com.quotesin.quotesin.utils.AppData;
 
@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.quotesin.quotesin.fragments.Indox.Current;
+import static com.quotesin.quotesin.fragments.Inbox.Current;
 
 
 public class Indox_Enquiries extends RecyclerView.Adapter<Indox_Enquiries.ViewHolder> {
@@ -170,7 +170,7 @@ public class Indox_Enquiries extends RecyclerView.Adapter<Indox_Enquiries.ViewHo
             viewHolder.itemView.setOnClickListener(view -> {
                 Bundle bundle = new Bundle();
                 HomeScreen activity = (HomeScreen) view.getContext();
-                Indox_Detail indoxDetail = new Indox_Detail();
+                Inbox_Detail indoxDetail = new Inbox_Detail();
                 bundle.putString("id", android.get(i).getId());
                 bundle.putString("username", android.get(i).getConsumer_username());
                 bundle.putString("desc", android.get(i).getEnquiry_description());
@@ -182,7 +182,7 @@ public class Indox_Enquiries extends RecyclerView.Adapter<Indox_Enquiries.ViewHo
                 bundle.putString("q_count", android.get(i).getQ_count());
                 bundle.putString("status", "0");
                 indoxDetail.setArguments(bundle);
-                activity.setTitle("Indox Detail");
+                activity.setTitle("Inbox Detail");
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, indoxDetail).addToBackStack(null).commit();
 
             });
@@ -192,7 +192,7 @@ public class Indox_Enquiries extends RecyclerView.Adapter<Indox_Enquiries.ViewHo
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
                     HomeScreen activity = (HomeScreen) view.getContext();
-                    Indox_Detail indoxDetail = new Indox_Detail();
+                    Inbox_Detail indoxDetail = new Inbox_Detail();
                     bundle.putString("id", android.get(i).getId());
                     bundle.putString("username", android.get(i).getConsumer_username());
                     bundle.putString("desc", android.get(i).getEnquiry_description());
@@ -203,7 +203,7 @@ public class Indox_Enquiries extends RecyclerView.Adapter<Indox_Enquiries.ViewHo
                     bundle.putString("enq_status", android.get(i).getEnquiry_status());
                     bundle.putString("status", "1");
                     indoxDetail.setArguments(bundle);
-                    activity.setTitle("Indox Detail");
+                    activity.setTitle("Inbox Detail");
                     activity.getSupportFragmentManager().beginTransaction().replace(R.id.flContent, indoxDetail).addToBackStack(null).commit();
 
                 }

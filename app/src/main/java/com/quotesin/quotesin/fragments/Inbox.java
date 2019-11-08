@@ -68,6 +68,7 @@ import com.quotesin.quotesin.utils.LoginPreferences;
 import com.quotesin.quotesin.utils.PayPalConfig;
 import com.quotesin.quotesin.utils.ProgressD;
 import com.quotesin.quotesin.utils.SwipeToDeleteCallback;
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -89,7 +90,7 @@ import java.util.TimerTask;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Indox extends Fragment implements View.OnClickListener, ViewPager.OnPageChangeListener {
+public class Inbox extends Fragment implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
     private static final int PAYPAL_REQUEST_CODE = 123;
     private static PopupWindow popupWindow;
@@ -107,6 +108,8 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
     private TextView tvConsumerQuotes;
     private ImageView tvFilter;
     private ImageView ivEmpty, ivEmpty2;
+    //Dot indicator
+    private DotsIndicator dotsIndicator;
 
     private Indox_Enquiries indoxEnquiries;
     private ArrayList<Indox_Enquiry_Model> indoxEnquiryModelArrayList = new ArrayList<>();
@@ -116,30 +119,30 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
 
     String TAG = this.getClass().getSimpleName();
     private FrameLayout flEnquiry, flQuotes;
-    boolean isLoading = false;
+  //  boolean isLoading = false;
     private ImageView fab, fabQuote;
     private FloatingActionButton  fab1, fab2;
-    private CoordinatorLayout coordinatorLayout;
+ //   private CoordinatorLayout coordinatorLayout;
     private RadioGroup toggle;
     private RadioButton enquiry, quotes;
-    private SearchManager searchManager;
+    SearchManager searchManager;
     private String filterFlag = "Normal";
-    String undoFlag = "0";
+   // String undoFlag = "0";
 
     private ViewPager pager_intro;
     private LinearLayout viewPagerCountDots;
     private AdsPagerAdapterSlider mAdapter;
     private Timer timer1;
     private int count1 = 0;
-    private ArrayList<String> ZeroOccur = new ArrayList<String>();
+    private ArrayList<String> ZeroOccur = new ArrayList<>();
     private SearchView searchView = null;
     private SearchView.OnQueryTextListener queryTextListener;
-    int dotsCount;
-    ImageView[] dots;
+    private int dotsCount;
+    private ImageView[] dots;
     ProgressD mProgressD;
     private CardView cardViewMembership,cardViewProfile;
 
-    public Indox() {
+    public Inbox() {
     }
 
 
@@ -147,7 +150,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        view = inflater.inflate(R.layout.fragment_indox, container, false);
+        view = inflater.inflate(R.layout.fragment_inbox, container, false);
 
         Log.e(TAG, "token--" + LoginPreferences.getActiveInstance(getActivity()).getDeviceToken());
 
@@ -233,6 +236,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
     }
 
     private void initViews() {
+        dotsIndicator=view.findViewById(R.id.dots_indicator);
         pager_intro = view.findViewById(R.id.pager_intro);
         viewPagerCountDots = view.findViewById(R.id.viewPagerCountDots);
        // coordinatorLayout = view.findViewById(R.id.coordinatorLayout);
@@ -281,7 +285,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, final int i) {
                 fab.setVisibility(View.GONE);
                 final int position = viewHolder.getAdapterPosition();
-                final String item = indoxEnquiries.android.toString();
+               // final String item = indoxEnquiries.android.toString();
 
                 indoxEnquiries.removeItem(position);
 
@@ -429,8 +433,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
             case R.id.fabQuote:
                 HomeScreen activit1y = (HomeScreen) v.getContext();
                 post_new_enquiry postNewEnquiry1 = new post_new_enquiry();
-                activit1y
-                        .getSupportFragmentManager()
+                activit1y.getSupportFragmentManager()
                         .beginTransaction()
                         .replace(R.id.flContent, postNewEnquiry1)
                         .addToBackStack(null)
@@ -511,8 +514,6 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
         });
     }
 
-    public void setNullToActionMode() {
-    }
 
     private void showAlert(String message, final String amount) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -602,6 +603,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
     private void setUpIntroParger(List<adsResponse.Advert> result) {
         mAdapter = new AdsPagerAdapterSlider(getActivity(), result);
         pager_intro.setAdapter(mAdapter);
+        dotsIndicator.setViewPager(pager_intro);
         pager_intro.setCurrentItem(0);
         pager_intro.setOnPageChangeListener(this);
         setUiPageViewController();
@@ -827,7 +829,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
 
             try {
                 client.connectForMultipart();
-                Log.e(TAG, "Indox after connection url: " + url);
+                Log.e(TAG, "Inbox after connection url: " + url);
 
                 client.addFormPart("user_name", LoginPreferences.getActiveInstance(getActivity()).getUser_username());
 
@@ -838,7 +840,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
 
 
                 response = client.getResponse();
-                Log.e(TAG, "Indox response :" + response);
+                Log.e(TAG, "Inbox response :" + response);
                 Log.e(TAG, "Login user_name :" + LoginPreferences.getActiveInstance(getActivity()).getUser_username());
 
 
@@ -876,7 +878,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
             if (mProgressD.isShowing()&&mProgressD!=null){
                 mProgressD.dismiss();
             }
-            Log.e(TAG, "Indox api response is " + response);
+            Log.e(TAG, "Inbox api response is " + response);
             if (response == null) {
                 //Toast.makeText(getActivity(), "Please check your Internet.", Toast.LENGTH_LONG).show();
             } else {
@@ -965,7 +967,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
 
             try {
                 client.connectForMultipart();
-                Log.e(TAG, "Indox after connection url: " + url);
+                Log.e(TAG, "Inbox after connection url: " + url);
 
                 if (filterFlag.equals("Normal")) {
                     client.addFormPart("user_name", LoginPreferences.getActiveInstance(getActivity()).getUser_username());
@@ -983,7 +985,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
 
                 response = client.getResponse();
 
-                Log.e(TAG, "Indox response :" + response);
+                Log.e(TAG, "Inbox response :" + response);
                 Log.e(TAG, "Login user_name :" + LoginPreferences.getActiveInstance(getActivity()).getUser_username());
                 Log.e(TAG, "Login user_id :" + LoginPreferences.getActiveInstance(getActivity()).getId());
                 Log.e(TAG, "Login location_id :" + LoginPreferences.getActiveInstance(getActivity()).getLocationId());
@@ -1037,14 +1039,13 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
 
                         try {
                             JSONArray jsonarry = jObject.getJSONArray("result");
-                            if (jsonarry != null) {
+                            //if (jsonarry != null) {
                                 quotesModelArrayList.clear();
 
                                 for (int i = 0; i < jsonarry.length(); i++) {
                                     JSONObject data = jsonarry.getJSONObject(i);
 
                                     RQuotesModel rQuotesModel = new RQuotesModel();
-
                                     //  rQuotesModel.setQuote_id(data.getString("id"));
                                     rQuotesModel.setEnquiry_id(data.getString("id"));
                                     rQuotesModel.setQuotes_title(data.getString("enquiry_title"));
@@ -1093,7 +1094,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
                                     rQuotesModel.setUnreadTot(String.valueOf(occurrences));
                                     Log.e(TAG, "occurence" + occurrences);
                                     quotesModelArrayList.add(rQuotesModel);
-                                }
+                             //   }
                             }
                             if (quotesModelArrayList.size() > 0) {
                                 setAdapterQuotes(quotesModelArrayList);
@@ -1165,6 +1166,7 @@ public class Indox extends Fragment implements View.OnClickListener, ViewPager.O
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             if (result == null) {
+
             } else {
 
                 try {

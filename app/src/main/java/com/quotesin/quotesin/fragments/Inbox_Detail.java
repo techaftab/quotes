@@ -46,9 +46,9 @@ import static com.quotesin.quotesin.adapter.EnqIndox_Adapter.popupWindow;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Indox_Detail extends Fragment implements View.OnClickListener, GetDeleteItem {
+public class Inbox_Detail extends Fragment implements View.OnClickListener, GetDeleteItem {
 
-    public static Indox_Detail indoxDetail;
+    public static Inbox_Detail indoxDetail;
     private TextView tvTitle;
     RecyclerView recyclerView, recyclerviewQuotes;
     View view;
@@ -68,15 +68,15 @@ public class Indox_Detail extends Fragment implements View.OnClickListener, GetD
     ArrayList<EnqIndox_Model> enqIndoxModelArrayList = new ArrayList<>();
     EnqIndox_Model enqIndoxModel = new EnqIndox_Model();
 
-    public Indox_Detail() {
+    public Inbox_Detail() {
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_indox__detail, container, false);
+        view = inflater.inflate(R.layout.fragment_inbox__detail, container, false);
 
-        indoxDetail = Indox_Detail.this;
+        indoxDetail = Inbox_Detail.this;
 
         initView();
         getDataFromBundle();
@@ -292,7 +292,7 @@ public class Indox_Detail extends Fragment implements View.OnClickListener, GetD
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            Log.e(TAG, "Indox api response is " + response);
+            Log.e(TAG, "Inbox api response is " + response);
             if (response == null) {
                 Toast.makeText(getActivity(), "Please check your Internet.", Toast.LENGTH_LONG).show();
             } else {

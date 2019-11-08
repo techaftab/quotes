@@ -153,7 +153,30 @@
     <string name="get_membership">Get Membership</string>
     <string name="profile">My Profile</string>
     <string name="attach">Attach</string>
-
+    <string name="get_quotes">Get Quotes</string>
+    <string name="deadline">Deadline :</string>
+    <string name="subject">Subject :</string>
+    <string name="msg_desc">Message / Description :</string>
+    <string name="your_location">Your Location :</string>
+    <string name="choose_country">Choose Country</string>
+    <string name="choose_state">Choose State</string>
+    <string name="choose_city">Choose City</string>
+    <string name="fixed_price">Fixed Price</string>
+    <string name="name">Name</string>
+    <string name="price">Price :</string>
+    <string name="description">Description :</string>
+    <string name="username_d">Username :</string>
+    <string name="this_quotes">This Quote is :</string>
+    <string name="occurance_rate">Occurance Rate :</string>
+    <string name="one_time_payment">One time payment</string>
+    <string name="ready_start">Ready To Start :</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="update_quotes">Update Quote</string>
+    <string name="leave_feedback">Leave Feedback</string>
+    <string name="immediately">Immediately</string>
+    <string name="choose_service">Choose Service</string>
+    <string name="all_selected">All Selected</string>
 
 </resources>
 

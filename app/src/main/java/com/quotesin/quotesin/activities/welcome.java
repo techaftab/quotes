@@ -123,7 +123,7 @@ public class welcome extends AppCompatActivity implements View.OnClickListener, 
         mAdapter = new ViewPagerAdapterSlider(welcome.this, result);
         pager_intro.setAdapter(mAdapter);
         pager_intro.setCurrentItem(0);
-        pager_intro.setOnPageChangeListener(this);
+        pager_intro.addOnPageChangeListener(this);
         setUiPageViewController();
 
         timer1 = new Timer();
@@ -212,9 +212,9 @@ public class welcome extends AppCompatActivity implements View.OnClickListener, 
         protected void onPostExecute(String result) {
             super.onPostExecute(result);
             mProgressD.dismiss();
-            if (result == null) {
+         /*   if (result == null) {
                 //  Toast.makeText(context, context.getString(R.string.server_error), Toast.LENGTH_LONG).show();
-            } else {
+            } else {*/
 
                 try {
                     Gson gson = new Gson();
@@ -227,7 +227,7 @@ public class welcome extends AppCompatActivity implements View.OnClickListener, 
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-            }
+          //  }
         }
     }
 }

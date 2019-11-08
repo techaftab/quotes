@@ -73,6 +73,9 @@
             android:theme="@style/AppTheme.WithHead"
             android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".activities.HomeScreen"/>
+
         <activity android:name=".activities.ConsSelectCountry" />
 
         <activity android:name=".activities.NotificationActivity" />
@@ -96,8 +99,7 @@
         <activity
             android:name=".activities.Business_Signup"/>
 
-        <activity
-            android:name=".activities.HomeScreen"/>
+
 
         <activity
             android:name=".activities.forgetPassword" />

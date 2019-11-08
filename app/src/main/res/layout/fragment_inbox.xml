@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    android:id="@+id/swipeRefreshLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".fragments.Inbox">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        android:isScrollContainer="true"
+        android:scrollbars="none"
+        tools:ignore="UnusedAttribute">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_above="@+id/frame_add"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_main"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/DP150"
+                    android:layout_margin="@dimen/DP8">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/DP150"
+                        android:orientation="horizontal"
+                        android:weightSum="1"
+                        tools:ignore="UselessParent">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardview_profile"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/DP130"
+                            android:padding="@dimen/DP8"
+                            app:cardElevation="@dimen/DP8"
+                            app:contentPadding="@dimen/DP6"
+                            app:cardCornerRadius="@dimen/DP6"
+                            android:layout_margin="@dimen/DP8"
+                            app:cardBackgroundColor="@color/white"
+                            android:background="@drawable/rl_back"
+                            android:layout_weight="0.50">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:layout_width="@dimen/DP80"
+                                    android:layout_height="@dimen/DP80"
+                                    android:src="@mipmap/user_blue"
+                                    android:padding="@dimen/DP8"
+                                    android:layout_gravity="center_horizontal"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/profile"
+                                    android:layout_gravity="center_horizontal"
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:lines="2"
+                                    android:textSize="@dimen/SP16"
+                                    android:textColor="@color/black"/>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/cardview_membership"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/DP130"
+                            android:orientation="vertical"
+                            app:cardElevation="@dimen/DP8"
+                            app:contentPadding="@dimen/DP6"
+                            app:cardCornerRadius="@dimen/DP6"
+                            android:background="@drawable/rl_back"
+                            android:layout_margin="@dimen/DP8"
+                            app:cardBackgroundColor="@color/white"
+                            android:layout_weight="0.50">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical"
+                                tools:ignore="UseCompoundDrawables">
+
+                                <ImageView
+                                    android:layout_width="@dimen/DP80"
+                                    android:layout_height="@dimen/DP80"
+                                    android:src="@mipmap/mrmbership"
+                                    android:padding="@dimen/DP8"
+                                    android:layout_gravity="center_horizontal"
+                                    tools:ignore="ContentDescription" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/get_membership"
+                                    android:layout_gravity="center_horizontal"
+                                    android:gravity="center"
+                                    android:textStyle="bold"
+                                    android:lines="2"
+                                    android:textSize="@dimen/SP16"
+                                    android:textColor="@color/black"/>
+
+                            </LinearLayout>
+
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/LlIndox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="@dimen/_8sdp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_45sdp"
+                        android:gravity="center"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:weightSum="2">
+
+                        <RadioGroup
+                            android:id="@+id/toggle"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_weight="1.6"
+                            android:layout_gravity="center_vertical"
+                            android:background="@drawable/bluecolor_border"
+                            android:checkedButton="@+id/enquiry"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/enquiry"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/radio_button_background"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:text="@string/rec_enq"
+                                android:textColor="@color/white"
+                                android:textSize="13sp" />
+
+                            <RadioButton
+                                android:id="@+id/quotes"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@drawable/radio_button_background"
+                                android:button="@null"
+                                android:gravity="center"
+                                android:text="@string/rec_quotes"
+                                android:textColor="@color/splash_color"
+                                android:textSize="13sp" />
+
+                        </RadioGroup>
+
+                        <TextView
+                            android:id="@+id/tvConsumerQuotes"
+                            android:layout_width="@dimen/DP200"
+                            android:layout_height="@dimen/DP40"
+                            android:layout_gravity="center"
+                            android:layout_marginLeft="@dimen/DP30"
+                            android:layout_marginRight="@dimen/DP30"
+                            android:layout_weight=".1"
+                            android:background="@drawable/blue_button"
+                            android:gravity="center"
+                            android:text="@string/rec_quotes"
+                            android:textColor="@color/white"
+                            android:textSize="16sp"
+                            android:visibility="gone" />
+
+                        <ImageView
+                            android:id="@+id/tvFilter"
+                            android:layout_width="@dimen/DP40"
+                            android:layout_height="@dimen/DP40"
+                            android:padding="@dimen/DP8"
+                            android:layout_marginStart="@dimen/DP30"
+                            android:layout_gravity="center_vertical"
+                            android:src="@mipmap/filter"
+                            tools:ignore="ContentDescription" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout1"
+                        android:layout_width="@dimen/DP300"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/DP2"
+                        android:background="@color/transparent"
+                        android:orientation="vertical" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/DP1"
+                        android:background="@color/grey_light1" />
+
+                    <FrameLayout
+                        android:id="@+id/flContent"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent">
+
+                        <ImageView
+                            android:id="@+id/ivEmpty"
+                            android:layout_width="@dimen/DP180"
+                            android:layout_height="@dimen/DP180"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/rec_no_enq"
+                            android:visibility="gone"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:id="@+id/llEnquiry"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <RelativeLayout
+                                android:id="@+id/coordinatorLayout"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                tools:ignore="UselessParent">
+
+                                <!--   <RelativeLayout
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent">-->
+
+                                <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/recyclerview1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:scrollbars="vertical"
+                                    android:padding="@dimen/DP5"/>
+                                <!--                                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />-->
+
+                                <!--   </RelativeLayout>-->
+
+                                <de.hdodenhof.circleimageview.CircleImageView
+                                    android:id="@+id/fab"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="bottom|end"
+                                    android:layout_marginEnd="@dimen/DP20"
+                                    android:layout_alignParentEnd="true"
+                                    android:layout_alignParentBottom="true"
+                                    android:src="@mipmap/float_pen"/>
+
+                                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                                    android:id="@+id/fab1"
+                                    android:layout_width="@dimen/_60sdp"
+                                    android:layout_height="@dimen/_60sdp"
+                                    android:layout_gravity="bottom|end"
+                                    android:layout_marginEnd="@dimen/_20sdp"
+                                    android:layout_marginBottom="@dimen/_20sdp"
+                                    android:src="@mipmap/qpen"
+                                    android:visibility="gone"
+                                    app:borderWidth="0dp"
+                                    app:elevation="6dp"
+                                    app:fabSize="normal"/>
+
+                            </RelativeLayout>
+
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/flQuotes"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="10"
+                        android:background="@android:color/transparent"
+                        android:visibility="gone">
+
+                        <ImageView
+                            android:id="@+id/ivEmpty2"
+                            android:layout_width="180dp"
+                            android:layout_height="180dp"
+                            android:layout_gravity="center"
+                            android:src="@mipmap/r_quo"
+                            android:visibility="gone"
+                            tools:ignore="ContentDescription" />
+
+                        <LinearLayout
+                            android:id="@+id/LLQuote"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerview2"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:scrollbars="vertical" />
+
+                        </LinearLayout>
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/fabQuote"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="20sp"
+                            android:src="@mipmap/float_pen" />
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:id="@+id/fab2"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginBottom="20sp"
+                            android:src="@mipmap/qpen"
+                            android:visibility="gone"
+                            app:backgroundTint="@color/splash_color"
+                            app:borderWidth="0dp"
+                            app:elevation="6dp"
+                            app:fabSize="normal" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/frame_add"
+                android:layout_width="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_height="@dimen/_60sdp">
+
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/pager_intro"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/ads_pageritem" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_gravity="bottom"
+                    android:paddingBottom="@dimen/_4sdp"
+                    android:layout_height="wrap_content">
+
+                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
+                        android:id="@+id/dots_indicator"
+                        android:layout_width="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:layout_height="wrap_content"
+                        app:dotsColor="@color/white"
+                        app:dotsCornerRadius="@dimen/_4sdp"
+                        app:dotsSize="@dimen/_8sdp"
+                        app:dotsSpacing="@dimen/_3sdp"
+                        app:dotsWidthFactor="2.5"
+                        app:selectedDotColor="@color/colorAccent"
+                        app:progressMode="true"/>
+
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:id="@+id/viewPagerCountDots"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_10sdp"
+                    android:layout_gravity="bottom"
+                    android:background="@android:color/transparent"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

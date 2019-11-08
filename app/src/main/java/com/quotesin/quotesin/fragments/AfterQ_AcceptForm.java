@@ -330,7 +330,7 @@ public class AfterQ_AcceptForm extends Fragment implements View.OnClickListener 
 
             try {
                 client.connectForMultipart();
-                Log.e(TAG, "Indox after connection url: " + url);
+                Log.e(TAG, "Inbox after connection url: " + url);
 
                 client.addFormPart("quote_id", AppData.getInstance().getQid());
                 client.addFormPart("quote_status", "1");

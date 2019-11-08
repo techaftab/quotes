@@ -40,7 +40,7 @@ import java.util.ArrayList;
 
 
 public class SubscriptionActivity extends AppCompatActivity implements View.OnClickListener {
-    private String p_id, amt, subscription_name;
+    String p_id, amt, subscription_name;
 
     float paymentAmount;
     RecyclerView recyclerView;
@@ -208,17 +208,14 @@ public class SubscriptionActivity extends AppCompatActivity implements View.OnCl
 
     public InItemClickListener getItemClickListener() {
 
-        return new InItemClickListener() {
-            @Override
-            public void onItemPurchaseClick(View v, int position) {
-                paymentAmount = Float.parseFloat(planModelArrayList.get(position).getPrice());
+        return (v, position) -> {
+            paymentAmount = Float.parseFloat(planModelArrayList.get(position).getPrice());
 
-                if (AppData.getInstance().getSubsc_name().equalsIgnoreCase("FREE")) {
-                    Intent intent = new Intent(SubscriptionActivity.this, HomeScreen.class);
-                    startActivity(intent);
-                } else {
-                    getPayment();
-                }
+            if (AppData.getInstance().getSubsc_name().equalsIgnoreCase("FREE")) {
+                Intent intent = new Intent(SubscriptionActivity.this, HomeScreen.class);
+                startActivity(intent);
+            } else {
+                getPayment();
             }
         };
     }
@@ -276,8 +273,8 @@ public class SubscriptionActivity extends AppCompatActivity implements View.OnCl
         ProgressD mProgressD;
         private String response;
         JSONObject jObject;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
         String id;
 
         @Override
@@ -316,20 +313,20 @@ public class SubscriptionActivity extends AppCompatActivity implements View.OnCl
                         Intent intent = new Intent(SubscriptionActivity.this, HomeScreen.class);
                         startActivity(intent);
 
-                        try {
-                            JSONArray jsonarry = jObject.getJSONArray("result");
+                       /* try {
+                            //JSONArray jsonarry = jObject.getJSONArray("result");
 
-                            if (jsonarry != null) {
-
-                                for (int i = 0; i < jsonarry.length(); i++) {
-
-
-                                }
-                            }
+//                            if (!jsonarry.isNull(0)) {
+//
+//                                for (int i = 0; i < jsonarry.length(); i++) {
+//
+//
+//                                }
+//                            }
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                        }
+                        }*/
 
                     } else if (status.equals("Failed")) {
                         Toast.makeText(SubscriptionActivity.this, responseMessage, Toast.LENGTH_LONG).show();
@@ -356,7 +353,7 @@ public class SubscriptionActivity extends AppCompatActivity implements View.OnCl
                 Log.e(TAG, "bid" + LoginPreferences.getActiveInstance(SubscriptionActivity.this).getId());
                 Log.e(TAG, "subscription_paln_id" + AppData.getInstance().getSubsc_id());
                 Log.e(TAG, "txn_id" + trn_id);
-                Log.e(TAG, "mc_gross" + String.valueOf(paymentAmount));
+                Log.e(TAG, "mc_gross" + paymentAmount);
                 Log.e(TAG, "payment_date" + create_time);
                 Log.e(TAG, "role_id" + LoginPreferences.getActiveInstance(SubscriptionActivity.this).getRole_id());
 

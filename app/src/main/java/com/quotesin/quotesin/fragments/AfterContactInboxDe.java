@@ -231,7 +231,7 @@ public class AfterContactInboxDe extends Fragment {
 
             try {
                 client.connectForMultipart();
-                Log.e(TAG, "Indox after connection url: " + url);
+                Log.e(TAG, "Inbox after connection url: " + url);
                 Log.e(TAG, "email_id: " + eid);
 
 
@@ -241,7 +241,7 @@ public class AfterContactInboxDe extends Fragment {
                 client.finishMultipart();
 
                 response = client.getResponse();
-                Log.e(TAG, "Indox response :" + response);
+                Log.e(TAG, "Inbox response :" + response);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -287,7 +287,7 @@ public class AfterContactInboxDe extends Fragment {
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
 
-            Log.e(TAG, "Indox api response is " + response);
+            Log.e(TAG, "Inbox api response is " + response);
             if (response == null) {
                 Toast.makeText(getActivity(), "Please check your Internet.", Toast.LENGTH_LONG).show();
             } else {

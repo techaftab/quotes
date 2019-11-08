@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
-
+    android:layout_height="@dimen/_60sdp"
+    android:background="@color/transparent">
 
     <ImageView
         android:id="@+id/img_pager_item"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="@dimen/_60sdp"
         android:scaleType="fitXY" />
 
-
-</LinearLayout>
+</RelativeLayout>

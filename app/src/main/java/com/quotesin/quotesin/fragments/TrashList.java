@@ -182,7 +182,7 @@ public class TrashList extends Fragment {
                 client.finishMultipart();
 
                 response = client.getResponse();
-                Log.e(TAG, "Indox response :" + response);
+                Log.e(TAG, "Inbox response :" + response);
                 Log.e(TAG, "Login user_name :" + LoginPreferences.getActiveInstance(getActivity()).getUser_username());
 
             } catch (Exception e) {

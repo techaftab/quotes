@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.quotesin.quotesin.fragments.Indox.Current;
+import static com.quotesin.quotesin.fragments.Inbox.Current;
 
 public class RQuotesAdapter extends RecyclerView.Adapter<RQuotesAdapter.ViewHolder> {
     public ArrayList<RQuotesModel> android;

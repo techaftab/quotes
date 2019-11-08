@@ -81,7 +81,8 @@
                     android:layout_height="@dimen/DP60"
                     android:layout_marginStart="@dimen/DP8"
                     android:textSize="@dimen/SP14"
-                    android:layout_toEndOf="@+id/view_1"/>
+                    android:layout_toEndOf="@+id/view_1"
+                    tools:ignore="Autofill" />
 
             </RelativeLayout>
 
@@ -128,7 +129,8 @@
                     android:textColorHint="@color/grey_light"
                     android:layout_height="@dimen/DP60"
                     android:layout_marginStart="@dimen/DP8"
-                    android:layout_toEndOf="@+id/view_2" />
+                    android:layout_toEndOf="@+id/view_2"
+                    tools:ignore="Autofill" />
 
             </RelativeLayout>
 
@@ -176,7 +178,8 @@
                     android:textColorHint="@color/grey_light"
                     android:layout_height="@dimen/DP60"
                     android:layout_marginStart="@dimen/DP8"
-                    android:layout_toEndOf="@+id/view_3" />
+                    android:layout_toEndOf="@+id/view_3"
+                    tools:ignore="Autofill" />
 
             </RelativeLayout>
 
@@ -224,7 +227,8 @@
                     android:textColorHint="@color/grey_light"
                     android:layout_height="@dimen/DP60"
                     android:layout_marginStart="@dimen/DP8"
-                    android:layout_toEndOf="@+id/view_4" />
+                    android:layout_toEndOf="@+id/view_4"
+                    tools:ignore="Autofill" />
 
             </RelativeLayout>
 
@@ -321,7 +325,8 @@
                     android:layout_height="@dimen/DP60"
                     android:layout_marginStart="@dimen/DP8"
                     android:textColorHint="@color/grey_light"
-                    android:layout_toEndOf="@+id/view_6" />
+                    android:layout_toEndOf="@+id/view_6"
+                    tools:ignore="Autofill" />
 
             </RelativeLayout>
 

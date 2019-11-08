@@ -1,16 +1,15 @@
 package com.quotesin.quotesin.activities;
 
 import android.content.Intent;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.quotesin.quotesin.R;
@@ -28,12 +27,12 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
 
         setContentView(R.layout.activity_create_account);
 
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
+       // GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
 
-        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
-                .enableAutoManage(this, this)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+//        GoogleApiClient mGoogleApiClient = new GoogleApiClient.Builder(this)
+//                .enableAutoManage(this, this)
+//                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+//                .build();
 
         initViews();
         registerClickListner();
@@ -101,12 +100,12 @@ public class CreateAccount extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void startIntent(Class<?> cls) {
-        Intent intent = new Intent(CreateAccount.this, cls);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
-        startActivity(intent);
-    }
+//    private void startIntent(Class<?> cls) {
+//        Intent intent = new Intent(CreateAccount.this, cls);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
+//        startActivity(intent);
+//    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

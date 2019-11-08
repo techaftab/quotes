@@ -114,23 +114,23 @@ public class post_new_enquiry extends Fragment implements View.OnClickListener, 
     private TextView tvDate, tvCountry, tvState, tvCity, tvView;
     private FrameLayout flCountry, flState, flCity, flServices, flCategory;
     RecyclerView recyclerview;
-    ImageView ivCancel, ivattach;
-    RelativeLayout LLDeadLine;
-    Button btnSubmit;
+    private ImageView ivCancel, ivattach;
+    private RelativeLayout LLDeadLine;
+    private Button btnSubmit;
     ImageView ivDeadQues;
-    EditText etName, etEmail, etEmailConf, etSubject, etMsg, etLocation;
-    ArrayList<spinner_model_category> categoryArrayList = new ArrayList<spinner_model_category>();
-    ArrayList<ServicesModel> servicesModelArrayList = new ArrayList<ServicesModel>();
-    ArrayAdapter<String> adapterSpCategory;
-    ArrayAdapter<String> adapterServiceCategory;
+    private EditText etName, etEmail, etEmailConf, etSubject, etMsg, etLocation;
+    ArrayList<spinner_model_category> categoryArrayList = new ArrayList<>();
+    private ArrayList<ServicesModel> servicesModelArrayList;
+    private ArrayAdapter<String> adapterSpCategory;
+    private ArrayAdapter<String> adapterServiceCategory;
     ServicesAdapter servicesAdapter;
     private Spinner spinner1, spinner2;
-    ArrayList<CountriesModel> countriesArrayList = new ArrayList<CountriesModel>();
-    ArrayList<StatesModel> statesModelArrayList = new ArrayList<StatesModel>();
-    ArrayList<CitiesModel> citiesModelArrayList = new ArrayList<CitiesModel>();
-    PostEnq_CountryAdapter countryAdapter;
-    PostEnq_StateAdapter stateAdapter;
-    PostEnq_CityAdapter cityAdapter;
+    private ArrayList<CountriesModel> countriesArrayList = new ArrayList<CountriesModel>();
+    private ArrayList<StatesModel> statesModelArrayList = new ArrayList<StatesModel>();
+    private ArrayList<CitiesModel> citiesModelArrayList = new ArrayList<CitiesModel>();
+    private PostEnq_CountryAdapter countryAdapter;
+    private PostEnq_StateAdapter stateAdapter;
+    private PostEnq_CityAdapter cityAdapter;
     private String currentDate;
     private double latitude, longitude;
     private Uri filePath;
@@ -146,6 +146,7 @@ public class post_new_enquiry extends Fragment implements View.OnClickListener, 
     public static CheckBox chkAll, chkAllState, chkAllCity;
 
     public post_new_enquiry() {
+        servicesModelArrayList = new ArrayList<>();
     }
 
 

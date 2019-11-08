@@ -1,16 +1,17 @@
 package com.quotesin.quotesin.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -22,6 +23,13 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.Task;
+import com.quotesin.quotesin.R;
+import com.quotesin.quotesin.utils.APIUrl;
+import com.quotesin.quotesin.utils.AppData;
+import com.quotesin.quotesin.utils.CommonMethod;
+import com.quotesin.quotesin.utils.HttpClient;
+import com.quotesin.quotesin.utils.LoginPreferences;
+import com.quotesin.quotesin.utils.ProgressD;
 import com.twitter.sdk.android.core.Callback;
 import com.twitter.sdk.android.core.DefaultLogger;
 import com.twitter.sdk.android.core.Result;
@@ -34,13 +42,6 @@ import com.twitter.sdk.android.core.TwitterException;
 import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.identity.TwitterAuthClient;
 import com.twitter.sdk.android.core.models.User;
-import com.quotesin.quotesin.R;
-import com.quotesin.quotesin.utils.APIUrl;
-import com.quotesin.quotesin.utils.AppData;
-import com.quotesin.quotesin.utils.CommonMethod;
-import com.quotesin.quotesin.utils.HttpClient;
-import com.quotesin.quotesin.utils.LoginPreferences;
-import com.quotesin.quotesin.utils.ProgressD;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,19 +57,19 @@ public class CreateAccountType extends AppCompatActivity implements View.OnClick
     RelativeLayout LLAccountType;
     String user_id, user_email, user_profile, user_name, type;
 
-    String twId, twName, twPhotoUrl, twEmail;
+    String twId, twName, /*twPhotoUrl,*/ twEmail;
 
     private TwitterAuthClient client;
     String TAG = this.getClass().getSimpleName();
-    String gm, tw, fb;
+   // String gm, tw, fb;
     String id1, username1, email1, profile_pic1, role_id1;
     private static final int RC_SIGN_IN = 100;
 
     String gmailId, gmailName, gmailPhotoUrl, gmailEmail;
 
-    String Base_url = "https://www.webmobril.org/dev/quotesinapp/";
+  //  String Base_url = "https://www.webmobril.org/dev/quotesinapp/";
     private GoogleSignInClient mGoogleSignInClient;
-    private GoogleApiClient mGoogleApiClient1;
+ //   private GoogleApiClient mGoogleApiClient1;
     ProgressD mProgressD;
 
     @Override
@@ -111,10 +112,10 @@ public class CreateAccountType extends AppCompatActivity implements View.OnClick
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
-        mGoogleApiClient1 = new GoogleApiClient.Builder(this)
+       /* mGoogleApiClient1 = new GoogleApiClient.Builder(this)
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
+                .build();*/
 
         initViews();
         registerClickListener();
@@ -256,20 +257,19 @@ public class CreateAccountType extends AppCompatActivity implements View.OnClick
 
 
     private TwitterSession getTwitterSession() {
-        TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
 
         //NOTE : if you want to get token and secret too use uncomment the below code
         /*TwitterAuthToken authToken = session.getAuthToken();
         String token = authToken.token;
         String secret = authToken.secret;*/
 
-        return session;
+        return TwitterCore.getInstance().getSessionManager().getActiveSession();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+       // GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
        // updateUI(account);
     }
 
@@ -301,7 +301,9 @@ public class CreateAccountType extends AppCompatActivity implements View.OnClick
     private void handleSignInGmail(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-
+            if (account != null) {
+                Log.w(TAG, "signInResult:failed code=" + account.getDisplayName());
+            }
             // Signed in successfully, show authenticated UI.
            // updateUI(account);
         } catch (ApiException e) {
@@ -351,14 +353,15 @@ public class CreateAccountType extends AppCompatActivity implements View.OnClick
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class LoginAsyncTask extends AsyncTask<String, Void, String> {
 
         ProgressD mProgressD;
         JSONObject jObject;
-        private String result;
-        private String status = "";
-        private String responseMessage = "";
-        private String available = "";
+      //  private String result;
+        String status = "";
+        String responseMessage = "";
+        String available = "";
         String id;
         private String response;
 

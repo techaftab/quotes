@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.quotesin.quotesin.R;
 import com.quotesin.quotesin.fragments.webview;
@@ -80,7 +81,7 @@ public class AdsPagerAdapterSlider extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((LinearLayout) object);
+        container.removeView((RelativeLayout) object);
     }
 
 

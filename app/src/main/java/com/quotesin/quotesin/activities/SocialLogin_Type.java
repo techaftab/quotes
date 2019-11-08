@@ -1,5 +1,6 @@
 package com.quotesin.quotesin.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.AsyncTask;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +27,7 @@ public class SocialLogin_Type extends AppCompatActivity implements View.OnClickL
     String user_id, user_email, user_profile, user_name, type;
 
     String TAG = this.getClass().getSimpleName();
-    String gid;
+ //   String gid;
     String id1, username1, email1, profile_pic1, role_id1, role_id;
 
     @Override
@@ -55,8 +56,8 @@ public class SocialLogin_Type extends AppCompatActivity implements View.OnClickL
     }
 
     private void initViews() {
-        btn_business = (Button) findViewById(R.id.btn_business);
-        btn_consumer = (Button) findViewById(R.id.btn_consumer);
+        btn_business =  findViewById(R.id.btn_business);
+        btn_consumer =  findViewById(R.id.btn_consumer);
     }
 
     private void registerClickListener() {
@@ -88,19 +89,20 @@ public class SocialLogin_Type extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class LoginAsyncTask extends AsyncTask<String, Void, String> {
 
         ProgressD mProgressD;
         JSONObject jObject;
-        private String result;
-        private String status = "";
-        private String responseMessage = "";
-        private String available = "";
+       // private String result;
+        String status = "";
+        String responseMessage = "";
+        String available = "";
         String id, acc_type;
         private String response;
 
 
-        public LoginAsyncTask(String s) {
+        LoginAsyncTask(String s) {
             this.acc_type = s;
         }
 
@@ -196,12 +198,16 @@ public class SocialLogin_Type extends AppCompatActivity implements View.OnClickL
         private String callService() {
             String url = null;
             if (type != null) {
-                if (type.equals("gm")) {
-                    url = APIUrl.google_login;
-                } else if (type.equals("fb")) {
-                    url = APIUrl.fb_login;
-                } else if (type.equals("tw")) {
-                    url = APIUrl.twitter_login;
+                switch (type) {
+                    case "gm":
+                        url = APIUrl.google_login;
+                        break;
+                    case "fb":
+                        url = APIUrl.fb_login;
+                        break;
+                    case "tw":
+                        url = APIUrl.twitter_login;
+                        break;
                 }
             }
 

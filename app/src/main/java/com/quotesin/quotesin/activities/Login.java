@@ -67,6 +67,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     EditText etEmail, etPass;
     String userName, password, business_email;
     TextView tvforgetPass;
+
   //String Base_url = "https://www.webmobril.org/dev/quotesinapp/";
 
     @Override
@@ -282,14 +283,13 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
 
 
     private TwitterSession getTwitterSession() {
-        TwitterSession session = TwitterCore.getInstance().getSessionManager().getActiveSession();
 
         //NOTE : if you want to get token and secret too use uncomment the below code
         /*TwitterAuthToken authToken = session.getAuthToken();
         String token = authToken.token;
         String secret = authToken.secret;*/
 
-        return session;
+        return TwitterCore.getInstance().getSessionManager().getActiveSession();
     }
 
 
@@ -315,7 +315,9 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             GoogleSignInAccount acct = result.getSignInAccount();
             assert acct != null;
             Log.e(TAG, "display name: " + acct.getDisplayName());
+
             gmailName = acct.getDisplayName();
+
             if (acct.getPhotoUrl() != null) {
                 gmailPhotoUrl = acct.getPhotoUrl().toString();
             }
@@ -366,7 +368,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         private String result;
         String status = "";
         String responseMessage = "";
-        String id, username, user_last_name, location_code, service_id, category_id, name, user_phone, user_profile_pic;
+        String id, username, /*user_last_name,*/ location_code, service_id, category_id, name, user_phone, user_profile_pic;
 
         @Override
         protected void onPreExecute() {
@@ -382,7 +384,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
                 Log.e(TAG, "device_id :" + LoginPreferences.getActiveInstance(Login.this).getDeviceToken());
                 Log.e(TAG, "device_type is :" + "1");
 
-                ArrayList<NameValuePair> postData = new ArrayList<NameValuePair>();
+                ArrayList<NameValuePair> postData = new ArrayList<>();
                 postData.add(new BasicNameValuePair("username", userName));
                 postData.add(new BasicNameValuePair("password", password));
                 postData.add(new BasicNameValuePair("device_id", LoginPreferences.getActiveInstance(Login.this).getDeviceToken()));

@@ -2,19 +2,9 @@ package com.quotesin.quotesin.activities;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.ClipData;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,6 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.quotesin.quotesin.R;
 import com.quotesin.quotesin.adapter.CityAdapter;
@@ -56,7 +51,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import libs.mjn.prettydialog.PrettyDialog;
-import libs.mjn.prettydialog.PrettyDialogCallback;
 
 import static com.quotesin.quotesin.utils.CommonMethod.hideSoftKeyboard;
 
@@ -68,16 +62,16 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
     Spinner spinner1;
     Button btn_submit;
 
-    String name, userName, email, phone, pass;
+    String name/*, userName, email, phone, pass*/;
     String user_name, user_phone, id;
     String user_profile_pic, user_email;
 
 
     TextView tvCountry, tvService, tvCity, tvState;
 
-    ArrayList<CountriesModel> countriesArrayList = new ArrayList<CountriesModel>();
-    ArrayList<StatesModel> statesModelArrayList = new ArrayList<StatesModel>();
-    ArrayList<CitiesModel> citiesModelArrayList = new ArrayList<CitiesModel>();
+    ArrayList<CountriesModel> countriesArrayList = new ArrayList<>();
+    ArrayList<StatesModel> statesModelArrayList = new ArrayList<>();
+    ArrayList<CitiesModel> citiesModelArrayList = new ArrayList<>();
 
 
     CountryAdapter countryAdapter;
@@ -87,13 +81,14 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
     ArrayAdapter<String> adapterSpCategory;
     ServicesAdapter servicesAdapter;
 
-    ArrayList<spinner_model_category> categoryArrayList = new ArrayList<spinner_model_category>();
-    ArrayList<ServicesModel> servicesModelArrayList = new ArrayList<ServicesModel>();
+    ArrayList<spinner_model_category> categoryArrayList = new ArrayList<>();
+    ArrayList<ServicesModel> servicesModelArrayList = new ArrayList<>();
 
     private String selectedIds, StateSelectedIds, citySelectedIds, selectedServicesIds;
     String selectedCategoriesId;
     String location_code, country_code, service_id, category_id, role_id, state_code;
 
+    @SuppressLint("StaticFieldLeak")
     public static CheckBox chkAll, chkAllState, chkAllCity;
 
     @Override
@@ -116,7 +111,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
                         Log.e(TAG, "item getId : " + categoryArrayList.get(position - 1).getId());
                         Log.e(TAG, "item getId-- : " + selectedCategoriesId);
-                        tvService.setText("Choose Service");
+                        tvService.setText(getResources().getString(R.string.choose_service));
                         selectedServicesIds = "";
 
                         getServicesList();
@@ -150,8 +145,9 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
         spinner1 = findViewById(R.id.spinner1);
         adapterSpCategory = new ArrayAdapter<String>(CountryService.this, R.layout.spinner_layout_black) {
 
+            @NonNull
             @Override
-            public View getView(int position, View convertView, ViewGroup parent) {
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
                 View v = super.getView(position, convertView, parent);
                 if (position == getCount()) {
@@ -189,41 +185,33 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
             case R.id.flCountry:
                 AlertDialog.Builder builder = new AlertDialog.Builder(CountryService.this);
                 LayoutInflater inflater = getLayoutInflater();
+                @SuppressLint("InflateParams")
                 View dialogLayout = inflater.inflate(R.layout.dialog_recyclerview, null);
 
                 chkAll = dialogLayout.findViewById(R.id.chkAll);
-                chkAll.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (chkAll.isChecked()) {
-                            countryAdapter.selectAll();
-                        } else {
-                            countryAdapter.unselectall();
+                chkAll.setOnClickListener(v1 -> {
+                    if (chkAll.isChecked()) {
+                        countryAdapter.selectAll();
+                    } else {
+                        countryAdapter.unselectall();
 
-                        }
                     }
                 });
 
                 recyclerView = dialogLayout.findViewById(R.id.recyclerview);
                 setCountryAdapter(countriesArrayList);
                 builder.setView(dialogLayout);
-                builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        getList();
-                        gettingState();
-                        tvState.setText("Choose State");
-                        tvCity.setText("Choose City");
-                        StateSelectedIds = "";
-                        citySelectedIds = "";
-                    }
+                builder.setPositiveButton("Ok", (dialog, which) -> {
+                    dialog.dismiss();
+                    getList();
+                    gettingState();
+                    tvState.setText(getResources().getString(R.string.choose_state));
+                    tvCity.setText(getResources().getString(R.string.choose_city));
+                    StateSelectedIds = "";
+                    citySelectedIds = "";
                 });
 
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
+                builder.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
                 builder.show();
 
 
@@ -233,18 +221,15 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                 if (selectedIds != null && !tvCountry.getText().toString().equalsIgnoreCase("Choose Country")) {
                     AlertDialog.Builder builderState = new AlertDialog.Builder(CountryService.this);
                     LayoutInflater inflater2 = getLayoutInflater();
-                    View dialogLayout2 = inflater2.inflate(R.layout.dialog_recyclerview, null);
+                    @SuppressLint("InflateParams") View dialogLayout2 = inflater2.inflate(R.layout.dialog_recyclerview, null);
 
                     chkAllState = dialogLayout2.findViewById(R.id.chkAll);
 
-                    chkAllState.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            if (chkAllState.isChecked()) {
-                                stateAdapter.selectAll();
-                            } else {
-                                stateAdapter.unselectall();
-                            }
+                    chkAllState.setOnClickListener(v13 -> {
+                        if (chkAllState.isChecked()) {
+                            stateAdapter.selectAll();
+                        } else {
+                            stateAdapter.unselectall();
                         }
                     });
 
@@ -253,22 +238,15 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                     setStateAdapter(statesModelArrayList);
                     builderState.setView(dialogLayout2);
 
-                    builderState.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            getListState();
-                            gettingcities();
-                            tvCity.setText("Choose City");
-                            citySelectedIds = "";
-                        }
+                    builderState.setPositiveButton("Ok", (dialog, which) -> {
+                        dialog.dismiss();
+                        getListState();
+                        gettingcities();
+                        tvCity.setText((getResources().getString(R.string.choose_city)));
+                        citySelectedIds = "";
                     });
 
-                    builderState.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-
-                        }
-                    });
+                    builderState.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
                     builderState.show();
                 } else {
                     CommonMethod.showAlert("Please Select Country", CountryService.this);
@@ -282,18 +260,15 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                     if (!stcity.equals("0")) {
                         AlertDialog.Builder builderCity = new AlertDialog.Builder(CountryService.this);
                         LayoutInflater inflater3 = getLayoutInflater();
-                        View dialogLayout3 = inflater3.inflate(R.layout.dialog_recyclerview, null);
+                        @SuppressLint("InflateParams") View dialogLayout3 = inflater3.inflate(R.layout.dialog_recyclerview, null);
 
                         chkAllCity = dialogLayout3.findViewById(R.id.chkAll);
 
-                        chkAllCity.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                if (chkAllCity.isChecked()) {
-                                    cityAdapter.selectAll();
-                                } else {
-                                    cityAdapter.unselectall();
-                                }
+                        chkAllCity.setOnClickListener(v12 -> {
+                            if (chkAllCity.isChecked()) {
+                                cityAdapter.selectAll();
+                            } else {
+                                cityAdapter.unselectall();
                             }
                         });
 
@@ -302,20 +277,13 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                         setCityAdapter(citiesModelArrayList);
                         builderCity.setView(dialogLayout3);
 
-                        builderCity.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-                                getListCities();
+                        builderCity.setPositiveButton("Ok", (dialog, which) -> {
+                            dialog.dismiss();
+                            getListCities();
 
-                            }
                         });
 
-                        builderCity.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-
-                            }
-                        });
+                        builderCity.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
                         builderCity.show();
                     }
                 } else {
@@ -331,27 +299,20 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                 if (!flSe.equals("0")) {
                     AlertDialog.Builder builder1 = new AlertDialog.Builder(CountryService.this);
                     LayoutInflater inflater1 = getLayoutInflater();
-                    View dialogLayout1 = inflater1.inflate(R.layout.dialog_recyclerview, null);
+                    @SuppressLint("InflateParams") View dialogLayout1 = inflater1.inflate(R.layout.dialog_recyclerview, null);
                     LinearLayout Linear = dialogLayout1.findViewById(R.id.L1);
                     Linear.setVisibility(View.GONE);
                     recyclerView = dialogLayout1.findViewById(R.id.recyclerview);
                     setServicesAdapter(servicesModelArrayList);
                     builder1.setView(dialogLayout1);
 
-                    builder1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            getListServices();
+                    builder1.setPositiveButton("Ok", (dialog, which) -> {
+                        dialog.dismiss();
+                        getListServices();
 
-                        }
                     });
 
-                    builder1.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-
-                        }
-                    });
+                    builder1.setNegativeButton("Cancel", (dialog, which) -> dialog.cancel());
 
                     builder1.show();
                 } else {
@@ -455,7 +416,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    private String getList() {
+    private void getList() {
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder1 = new StringBuilder();
         for (CountriesModel number : countriesArrayList) {
@@ -474,7 +435,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
             String serviceName1 = countryname.substring(1);
 
             if (chkAll.isChecked()) {
-                tvCountry.setText("All Selected");
+                tvCountry.setText(getResources().getString(R.string.all_selected));
             } else {
                 tvCountry.setText(serviceName1);
             }
@@ -483,14 +444,13 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
             Log.e("selectedIds---", selectedIds);
             Log.e("tvServicesCho---", countryname);
         } else {
-            tvCountry.setText("Choose Country");
+            tvCountry.setText(getResources().getString(R.string.choose_country));
             Log.e("selectedIds---", selectedIds);
             Log.e("tvServicesCho---", countryname);
         }
-        return selectedIds;
     }
 
-    private String getListState() {
+    private void getListState() {
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder1 = new StringBuilder();
         for (StatesModel number : statesModelArrayList) {
@@ -509,7 +469,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
             String stateName1 = statename.substring(1);
 
             if (chkAllState.isChecked()) {
-                tvState.setText("All Selected");
+                tvState.setText(getResources().getString(R.string.all_selected));
             } else {
                 tvState.setText(stateName1);
             }
@@ -518,15 +478,14 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
             Log.e("StateSelectedIds---", StateSelectedIds);
             Log.e("tvServicesCho---", stateName1);
         } else {
-            tvState.setText("Choose State");
+            tvState.setText(getResources().getString(R.string.choose_state));
             Log.e("StateSelectedIds---", StateSelectedIds);
             Log.e("tvServicesCho---", statename);
         }
 
-        return StateSelectedIds;
     }
 
-    private String getListCities() {
+    private void getListCities() {
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder1 = new StringBuilder();
         for (CitiesModel number : citiesModelArrayList) {
@@ -545,7 +504,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
             String stateName1 = statename.substring(1);
 
             if (chkAllCity.isChecked()) {
-                tvCity.setText("All Selected");
+                tvCity.setText(getResources().getString(R.string.all_selected));
             } else {
                 tvCity.setText(stateName1);
             }
@@ -554,14 +513,13 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
             Log.e("citySelectedIds---", citySelectedIds);
             Log.e("tvCity---", stateName1);
         } else {
-            tvCity.setText("Choose City");
+            tvCity.setText(getResources().getString(R.string.choose_city));
 
         }
 
-        return citySelectedIds;
     }
 
-    private String getListServices() {
+    private void getListServices() {
         StringBuilder stringBuilder = new StringBuilder();
         StringBuilder stringBuilder1 = new StringBuilder();
         for (ServicesModel number : servicesModelArrayList) {
@@ -581,11 +539,10 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
             Log.e("selectedServicesIds---", selectedServicesIds);
             Log.e("tvService---", serviceName1);
         } else {
-            tvService.setText("Choose Service");
+            tvService.setText(getResources().getString(R.string.choose_service));
 
         }
 
-        return selectedServicesIds;
     }
 
 
@@ -594,8 +551,8 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
         ProgressD mProgressD;
         JSONObject jObject;
         private String result;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -606,7 +563,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
         @Override
         protected String doInBackground(String... params) {
             try {
-                ArrayList<NameValuePair> postData = new ArrayList<NameValuePair>();
+               // ArrayList<NameValuePair> postData = new ArrayList<NameValuePair>();
 
                 result = CustomHttpClient.executeHttpGet(APIUrl.get_all_countries);
                 System.out.print(result);
@@ -631,7 +588,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
                     if (status.equalsIgnoreCase("success")) {
                         JSONArray jsonArray = jObject.getJSONArray("message");
-                        countriesArrayList = new ArrayList<CountriesModel>();
+                        countriesArrayList = new ArrayList<>();
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject post = jsonArray.getJSONObject(i);
 
@@ -647,8 +604,6 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
                     } else if (status.equals("failed")) {
                         Toast.makeText(CountryService.this, responseMessage, Toast.LENGTH_LONG).show();
-
-                    } else {
 
                     }
                 } catch (JSONException e) {
@@ -670,13 +625,14 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class GetStateAsyncTask extends AsyncTask<String, Void, String> {
 
         ProgressD mProgressD;
         JSONObject jObject;
         private String response;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -712,9 +668,9 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
                     if (status.equalsIgnoreCase("success")) {
                         JSONArray jsonArray = jObject.getJSONArray("message");
-                        if (jsonArray != null) {
+                        if (!jsonArray.isNull(0)) {
 
-                            statesModelArrayList = new ArrayList<StatesModel>();
+                            statesModelArrayList = new ArrayList<>();
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject post = jsonArray.getJSONObject(i);
@@ -729,11 +685,11 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                             Log.e(TAG, " statesModelArrayList size: " + statesModelArrayList.size() + "");
                         }
 
-                    } else if (status.equals("Failed")) {
+                    } /*else if (status.equals("Failed")) {
 
                     } else {
 
-                    }
+                    }*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -755,13 +711,14 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     public class GetCityAsyncTask extends AsyncTask<String, Void, String> {
 
         ProgressD mProgressD;
         JSONObject jObject;
         private String response;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -798,9 +755,9 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
                     if (status.equalsIgnoreCase("success")) {
                         JSONArray jsonArray = jObject.getJSONArray("message");
-                        if (jsonArray != null) {
+                        if (!jsonArray.isNull(0)) {
 
-                            citiesModelArrayList = new ArrayList<CitiesModel>();
+                            citiesModelArrayList = new ArrayList<>();
 
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject post = jsonArray.getJSONObject(i);
@@ -817,11 +774,11 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
                         }
 
-                    } else if (status.equals("Failed")) {
+                    } /*else if (status.equals("Failed")) {
 
                     } else {
 
-                    }
+                    }*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -849,8 +806,8 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
         JSONObject jObject;
         private String result;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -884,8 +841,8 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                     if (status.equalsIgnoreCase("Success")) {
                         JSONArray jsonArray = jObject.getJSONArray("result");
 
-                        if (jsonArray != null) {
-                            categoryArrayList = new ArrayList<spinner_model_category>();
+                        if (!jsonArray.isNull(0)) {
+                            categoryArrayList = new ArrayList<>();
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject post = jsonArray.getJSONObject(i);
 
@@ -943,17 +900,18 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
             countries.add(model1.getTitle());
             adapterSpCategory.add(model1.getTitle());
         }
-        spinner1.setAdapter(new ArrayAdapter<String>(CountryService.this, R.layout.spinner_layout_black, countries));
+        spinner1.setAdapter(new ArrayAdapter<>(CountryService.this, R.layout.spinner_layout_black, countries));
     }
 
 
+    @SuppressLint("StaticFieldLeak")
     public class GetServicesAsyncTask extends AsyncTask<String, Void, String> {
 
         ProgressD mProgressD;
         JSONObject jObject;
         private String result;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
 
         @Override
         protected void onPreExecute() {
@@ -965,7 +923,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
         protected String doInBackground(String... params) {
             try {
 
-                ArrayList<NameValuePair> postData = new ArrayList<NameValuePair>();
+                ArrayList<NameValuePair> postData = new ArrayList<>();
                 postData.add(new BasicNameValuePair("catid", selectedCategoriesId));
                 result = CustomHttpClient.executeHttpPost(APIUrl.GET_SERVICES, postData);
                 System.out.print(result);
@@ -991,9 +949,9 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
                     if (status.equalsIgnoreCase("Success")) {
                         JSONArray jsonArray = jObject.getJSONArray("result");
-                        if (jsonArray != null) {
+                        if (!jsonArray.isNull(0)) {
 
-                            servicesModelArrayList = new ArrayList<ServicesModel>();
+                            servicesModelArrayList = new ArrayList<>();
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject post = jsonArray.getJSONObject(i);
 
@@ -1015,8 +973,6 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
                     } else if (status.equals("Failed")) {
                         setServicesAdapter(servicesModelArrayList);
-                    } else {
-
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -1038,12 +994,13 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
         recyclerView.setAdapter(servicesAdapter);
     }
 
+    @SuppressLint("StaticFieldLeak")
     public class SignupAsyncTask extends AsyncTask<String, Void, String> {
 
         ProgressD mProgressD;
         JSONObject jObject;
-        private String status = "";
-        private String responseMessage = "";
+        String status = "";
+        String responseMessage = "";
         private String response;
 
         @Override
@@ -1142,6 +1099,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                                 dialog.show();*/
 
                                 final PrettyDialog pDialog = new PrettyDialog(CountryService.this);
+                                // button OnClick listener
                                 pDialog
                                         .setTitle("Congratulations! \n Registered Successfully")
                                         .setMessage("You have been successfully registered.")
@@ -1150,16 +1108,13 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                                                 "OK",                    // button text
                                                 R.color.pdlg_color_white,        // button text color
                                                 R.color.splash_color,        // button background color
-                                                new PrettyDialogCallback() {        // button OnClick listener
-                                                    @Override
-                                                    public void onClick() {
-                                                        Intent i = new Intent(CountryService.this, HomeScreen.class);
-                                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                        overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
-                                                        startActivity(i);
-                                                        finish();
-                                                        pDialog.dismiss();
-                                                    }
+                                                () -> {
+                                                    Intent i = new Intent(CountryService.this, HomeScreen.class);
+                                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
+                                                    startActivity(i);
+                                                    finish();
+                                                    pDialog.dismiss();
                                                 }
                                         )
                                         .setAnimationEnabled(true)
@@ -1195,6 +1150,7 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
 
                                 LoginPreferences.getActiveInstance(CountryService.this).setIsLoggedIn(false);
                                 final PrettyDialog pDialog = new PrettyDialog(CountryService.this);
+                                // button OnClick listener
                                 pDialog
                                         .setTitle("Congratulations! \n Registered Successfully")
                                         .setMessage("An email has been sent to your \n registered email for verification.")
@@ -1203,27 +1159,19 @@ public class CountryService extends AppCompatActivity implements View.OnClickLis
                                                 "OK",                    // button text
                                                 R.color.pdlg_color_white,        // button text color
                                                 R.color.splash_color,        // button background color
-                                                new PrettyDialogCallback() {        // button OnClick listener
-                                                    @Override
-                                                    public void onClick() {
-                                                        Intent i = new Intent(CountryService.this, Login.class);
-                                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                                        overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
-                                                        startActivity(i);
-                                                        finish();
-                                                        pDialog.dismiss();
-                                                    }
+                                                () -> {
+                                                    Intent i = new Intent(CountryService.this, Login.class);
+                                                    i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                    overridePendingTransition(R.anim.slide_in, R.anim.slider_out);
+                                                    startActivity(i);
+                                                    finish();
+                                                    pDialog.dismiss();
                                                 }
                                         )
                                         .setAnimationEnabled(true)
                                         .show();
                             }
 
-
-                        try {
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
                     } else if (status.equals("failed")) {
                         Toast.makeText(getApplicationContext(), responseMessage, Toast.LENGTH_LONG).show();
                     } else {

@@ -74,8 +74,8 @@ public class LeaveFeedBAck extends Fragment implements View.OnClickListener {
 
         Bundle b = this.getArguments();
         assert b != null;
-        // mail_id = Indox_Detail.indoxDetail.id;
-        // update_quote = Indox_Detail.indoxDetail.id;
+        // mail_id = Inbox_Detail.indoxDetail.id;
+        // update_quote = Inbox_Detail.indoxDetail.id;
 
         qid = b.getString("qid");
         price = b.getString("price");

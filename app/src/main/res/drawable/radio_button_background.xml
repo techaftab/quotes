@@ -5,16 +5,18 @@
 
     <item android:state_checked="true" >
         <shape android:shape="rectangle" >
-            <corners android:radius="20dp" />
-            <stroke android:width="1dip" android:color="@color/splash_color" />
+            <corners android:radius="@dimen/_180sdp" />
+            <stroke android:width="1dip"
+                android:color="@color/splash_color" />
             <solid android:color="@color/splash_color" />
         </shape>
     </item>
 
     <item android:state_pressed="true" >
         <shape android:shape="rectangle" >
-            <corners android:radius="20dp" />
-            <stroke android:width="1dip" android:color="@color/white" />
+            <corners android:radius="@dimen/_180sdp" />
+            <stroke android:width="1dip"
+                android:color="@color/white" />
             <solid android:color="@color/white" />
         </shape>
     </item>
