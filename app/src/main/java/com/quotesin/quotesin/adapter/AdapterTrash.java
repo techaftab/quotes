@@ -27,8 +27,8 @@ public class AdapterTrash extends RecyclerView.Adapter<AdapterTrash.ViewHolder> 
 
     public ArrayList<Indox_Enquiry_Model> android;
     private Context context;
-    String letter;
-    Date date1;
+    private String letter;
+    private Date date1;
     private String Enquiry_deadline;
 
     public AdapterTrash(FragmentActivity activity, ArrayList<Indox_Enquiry_Model> trasharrayList) {

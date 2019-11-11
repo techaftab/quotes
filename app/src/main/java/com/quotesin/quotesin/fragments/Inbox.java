@@ -69,6 +69,7 @@ import com.quotesin.quotesin.utils.PayPalConfig;
 import com.quotesin.quotesin.utils.ProgressD;
 import com.quotesin.quotesin.utils.SwipeToDeleteCallback;
 import com.tbuonomo.viewpagerdotsindicator.DotsIndicator;
+import com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -109,7 +110,7 @@ public class Inbox extends Fragment implements View.OnClickListener, ViewPager.O
     private ImageView tvFilter;
     private ImageView ivEmpty, ivEmpty2;
     //Dot indicator
-    private DotsIndicator dotsIndicator;
+    private SpringDotsIndicator dotsIndicator;
 
     private Indox_Enquiries indoxEnquiries;
     private ArrayList<Indox_Enquiry_Model> indoxEnquiryModelArrayList = new ArrayList<>();
@@ -236,7 +237,7 @@ public class Inbox extends Fragment implements View.OnClickListener, ViewPager.O
     }
 
     private void initViews() {
-        dotsIndicator=view.findViewById(R.id.dots_indicator);
+        dotsIndicator=view.findViewById(R.id.spring_dots_indicator);
         pager_intro = view.findViewById(R.id.pager_intro);
         viewPagerCountDots = view.findViewById(R.id.viewPagerCountDots);
        // coordinatorLayout = view.findViewById(R.id.coordinatorLayout);

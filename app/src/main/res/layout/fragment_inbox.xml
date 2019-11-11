@@ -370,18 +370,19 @@
                     android:paddingBottom="@dimen/_4sdp"
                     android:layout_height="wrap_content">
 
-                    <com.tbuonomo.viewpagerdotsindicator.DotsIndicator
-                        android:id="@+id/dots_indicator"
+                    <com.tbuonomo.viewpagerdotsindicator.SpringDotsIndicator
+                        android:id="@+id/spring_dots_indicator"
                         android:layout_width="wrap_content"
-                        android:layout_centerHorizontal="true"
                         android:layout_height="wrap_content"
-                        app:dotsColor="@color/white"
+                        android:layout_centerHorizontal="true"
+                        app:dampingRatio="0.5"
+                        app:dotsColor="@color/colorAccent"
+                        app:dotsStrokeColor="@color/colorAccent"
                         app:dotsCornerRadius="@dimen/_4sdp"
                         app:dotsSize="@dimen/_8sdp"
-                        app:dotsSpacing="@dimen/_3sdp"
-                        app:dotsWidthFactor="2.5"
-                        app:selectedDotColor="@color/colorAccent"
-                        app:progressMode="true"/>
+                        app:dotsSpacing="@dimen/_4sdp"
+                        app:dotsStrokeWidth="@dimen/_2sdp"
+                        app:stiffness="300" />
 
                 </RelativeLayout>
 
